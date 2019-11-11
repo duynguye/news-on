@@ -1,0 +1,1 @@
+export const API_ENDPOINT = 'https://sbgi118262site.wpengine.com/wp-json'
