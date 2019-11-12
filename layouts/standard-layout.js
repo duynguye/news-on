@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'components/head'
 import Header from 'components/header'
+import Footer from 'components/footer'
 
 const StandardLayout = ({ children }) => (
   <div>
@@ -9,6 +10,7 @@ const StandardLayout = ({ children }) => (
     <section>
       <Header />
       { children }
+      <Footer />
     </section>
 
     <style jsx global>{`

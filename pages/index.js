@@ -10,9 +10,34 @@ import { API_ENDPOINT } from 'config'
 import StandardLayout from 'layouts/standard-layout'
 import PrimaryHero from 'components/primary-hero'
 import Section from 'components/content/section'
+import HeadingMedium from 'components/text/heading-medium'
+import Divider from 'components/content/divider'
+import Badge from 'components/buttons/badge'
+
+const WrappedBadge = ({ image = '', link = '' }) => (
+  <div>
+    <Badge src={image} link={link} />
+
+    <style jsx>{`
+      div {
+        margin: 0 15px;
+      }  
+    `}</style>
+  </div>
+)
 
 const Home = ({ featured_image, primary_hero, badges }) => {
   const { primary_hero_image, primary_hero_title, primary_hero_content } = primary_hero
+  const mobileBadges = badges.filter(badge => badge.platform === 'mobile')
+  const tvBadges = badges.filter(badge => badge.platform === 'tv')
+
+  const mobileBadgesList = mobileBadges.map(badge => (
+    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
+  ))
+
+  const tvBadgesList = tvBadges.map(badge => (
+    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
+  ))
 
   return (
     <StandardLayout>
@@ -29,6 +54,7 @@ const Home = ({ featured_image, primary_hero, badges }) => {
         foreground={'https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/roku-1.png'}
         title={'About NewsON'}
         content={"Now with over 285 local station partners and over 175 markets in the country, NewsON delivers a new way to access and experience local news. Let's take local news to the next level. Let's do it together."}
+        to={'/about'}
       />
       
       <Section 
@@ -40,6 +66,49 @@ const Home = ({ featured_image, primary_hero, badges }) => {
         title={'Watch live, local TV newscasts for free. No cable subscription or login required.'}
         titleSize={'small'}
       />
+
+      <div className='wrapper'>
+        <div className='section'>
+          <HeadingMedium margin={'0 0 30px 0'}>Stream NewsON from your TV for free</HeadingMedium>
+          <Divider />
+          <div className='badgeWrapper'>
+            { tvBadgesList }
+          </div>
+        </div>
+
+        <div className='section'>
+          <HeadingMedium margin={'0 0 30px 0'}>Stream NewsON from your mobile device for free</HeadingMedium>
+          <Divider />
+          <div className='badgeWrapper'>
+            { mobileBadgesList }
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        div.wrapper {
+          background-color: #f8f8f8;
+          display: flex;
+          flex-direction: row;
+          padding: 180px 0 100px 0;
+        }  
+
+        div.section {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 1;
+          padding: 0 8.33333vw;
+          text-align: center;
+          width: 50%;
+        }
+
+        div.badgeWrapper {
+          display: flex;
+          flex-wrap: wrap;
+        }
+      `}</style>
     </StandardLayout>
   )
 }

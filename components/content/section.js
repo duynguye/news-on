@@ -1,6 +1,7 @@
 import React from 'react'
 
 import HeadingMedium from 'components/text/heading-medium'
+import HeadingSmall from 'components/text/heading-small'
 import Paragraph from 'components/text/paragraph'
 import Link from 'components/buttons/link'
 
@@ -37,11 +38,21 @@ const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = f
   </div>
 )
 
-const TextSection = ({ order = 2 }) => (
-  <div>
-    <HeadingMedium margin={'0 0 24px 0'}>About NewsON</HeadingMedium>
-    <Paragraph margin={'0 0 24px 0'}>Now with over 285 local station partners and over 175 markets in the country, NewsON delivers a new way to access and experience local news. Let's take local news to the next level. Let's do it together.</Paragraph>
-    <Link to={'/about'}>Learn More</Link>
+const TextSection = ({ order = 2, content, centered, title, titleSize, to }) => (
+  <div className={ centered && 'centered' }>
+    {
+      titleSize === 'small'
+      ? <HeadingSmall margin={'0 0 24px 0'}>{ title }</HeadingSmall>
+      : <HeadingMedium margin={'0 0 24px 0'}>{ title }</HeadingMedium>
+    }
+    
+    { content && <Paragraph margin={'0 0 24px 0'}>{ content }</Paragraph> }
+    
+    {
+      to
+      ? <Link to={to}>Learn More</Link>
+      : ''
+    }
 
     <style jsx>{`
       div {
@@ -53,11 +64,26 @@ const TextSection = ({ order = 2 }) => (
         padding: 4.16666vw;
         width: 50vw;
       }
+
+      .centered {
+        align-items: center;
+        text-align: center;
+      }
     `}</style>
   </div>
 )
 
-const Section = ({ background = '', foreground = '', foregroundSpecial = false, flipped = false, reverse = false }) => {
+const Section = ({ 
+  background = '', 
+  foreground = '', 
+  foregroundSpecial = false, 
+  reverse = false,
+  centered = false,
+  title = '',
+  titleSize = '',
+  content = '',
+  to = ''
+}) => {
   return (
     <section>
       <ImageSection 
@@ -69,6 +95,11 @@ const Section = ({ background = '', foreground = '', foregroundSpecial = false, 
       
       <TextSection 
         order={reverse ? 1 : 2}
+        centered={centered}
+        title={title}
+        titleSize={titleSize}
+        content={content}
+        to={to}
       />
 
       <style jsx>{`
