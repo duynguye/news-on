@@ -2,7 +2,11 @@ import React from 'react'
 
 const HeadingLarge = ({ children, light = false, margin = '0', titleMarkup = '' }) => (
   <>
-    <h1 className={ light && 'light' } dangerouslySetInnerHTML={{ __html: titleMarkup }}>{ children }</h1>
+    { 
+      titleMarkup 
+      ? <h1 className={ light && 'light' } dangerouslySetInnerHTML={{ __html: titleMarkup }}></h1>
+      : <h1 className={ light && 'light' }>{ children }</h1>
+    }
 
     <style jsx>{`
       h1 {

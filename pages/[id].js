@@ -5,12 +5,18 @@ import { withRedux } from 'config/redux'
 import StandardLayout from 'layouts/standard-layout'
 import { API_ENDPOINT } from 'config'
 
+import Hero from 'components/content/hero'
+import WordpressContent from 'components/content/wordpress-content'
+
 const Page = (props) => {
   const router = useRouter();
 
+  console.log(props.page)
+
   return (
     <StandardLayout>
-      <h1></h1>
+      <Hero title={props.page.title.rendered} content={'Sem et tortor consequat id porta nibh venenatis. Facilisi morbi tempus iaculis urna id volutpat lacus. Suspendisse interdum consectetur libero id faucibus. Magna etiam tempor orci eu lobortis elementum nibh tellus.'} />
+      <WordpressContent content={props.page.content.rendered} />
     </StandardLayout>
   )
 }
