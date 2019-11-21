@@ -9,6 +9,7 @@ const WordpressContent = ({ content }) => (
         padding: 0 4.16666vw;
         width: 50vw;
       }
+
       :global(h2) {
         color: #004A87;
         font-family: 'Brandon Text', sans-serif;
@@ -44,16 +45,18 @@ const WordpressContent = ({ content }) => (
         max-width: 70%;
       }
 
-      :global(img) {
+      :global(.wp-block-image img) {
         height: auto;
+        margin-bottom: 20px;
         width: 100%;
       }
 
       :global(figcaption) {
-        color: #4D6177;
+        color: #606060;
         font-family: 'Brandon Text', sans-serif;
         font-size: 14px;
         font-weight: 500;
+        text-align: center;
       }
 
       :global(a) {
@@ -64,6 +67,25 @@ const WordpressContent = ({ content }) => (
       :global(a:hover) {
         text-decoration: underline;
       }
+
+      :global(ul) {
+
+      }
+
+      :global(li) {
+        color: #001329;
+        font-family: 'Brandon Text', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 26px;
+        margin: 0;
+        margin-bottom: 30px;
+      }
+
+      :global(li > ul) {
+        margin-top: 30px;
+      }
+      
     `}</style>
   </>
 )

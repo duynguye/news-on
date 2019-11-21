@@ -1,39 +1,56 @@
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
-const item = {
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.45,
-      ease: 'easeOut'
-    },
-  },
+const NavLink = ({ pathname, title }) => {
+  let path = pathname.split('/')
+  path = path.filter(name => name)
 
-  hidden: { opacity: 0, y: 30 }
+  return (
+    <li>
+      <Link href={`/[slug]`} as={`/${path[0]}`}>
+        <a>{ title }</a>
+      </Link>
+
+      <style jsx>{`
+        li {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          height: 100%;
+          margin: 0 20px;
+          position: relative;
+        }
+
+        li:hover a {
+          color: #008FD6;
+          text-decoration: none;
+        }
+
+        li::after {
+          background: #70D549;
+          bottom: 0;
+          content: '';
+          display: none;
+          height: 4px;
+          left: 0;
+          position: absolute;
+          width: 100%;
+        }
+
+        li:hover::after {
+          display: block;
+        }
+
+        a {
+          color: #001425;
+          font-family: 'Brandon Text', sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          text-decoration: none;
+        }
+      `}</style>
+    </li>
+  )
 }
-
-const style = {
-  margin: '0 20px'
-}
-
-const NavLink = ({ pathname, title }) => (
-  <motion.li variants={item} style={style}>
-    <Link href={pathname}>
-      <a>{ title }</a>
-    </Link>
-
-    <style jsx>{`
-      a {
-        color: #001425;
-        font-family: 'Brandon Text', sans-serif;
-        font-weight: 500;
-        text-decoration: none;
-      }
-    `}</style>
-  </motion.li>
-)
 
 export default NavLink

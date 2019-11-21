@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const FooterLink = ({ to, children }) => (
   <li>
-    <Link href={to} as={to}>
+    <Link href={to}>
       <a>{ children }</a>
     </Link>
 
@@ -41,7 +41,7 @@ const Footer = () => (
 
     <div className={'copyright'}>
       <span>© Copyright 2019 All Rights Reserved</span>
-      <span>Designed by <a href='/' target='_blank'>Compulse</a></span>
+      <span>Designed by <a href='https://compulse.com' target='_blank'>Compulse</a></span>
     </div>
 
     <style jsx>{`

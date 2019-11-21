@@ -28,8 +28,6 @@ const PrimaryHero = (props) => {
   const controls = useAnimation()
   const pictureRef = useRef()
 
-  console.log(badges)
-
   useEffect(() => {
     if (pictureRef) {
       if (pictureRef.current.complete) {
