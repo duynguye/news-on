@@ -1,11 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
 
-const PageLink = ({ to = '', target = '', margin = '0', children }) => (
+const TextLink = ({ to = '', external = false, margin = '0', children }) => (
   <>
-    <Link href={to}>
-      <a target={target}>{ children }</a>
-    </Link>
+    { 
+      !external
+      ? <Link href={to}>
+          <a>{ children }</a>
+        </Link>
+      : <a target='_blank' href={to}>{ children }</a>
+    }
 
     <style jsx>{`
       a {
@@ -20,16 +24,26 @@ const PageLink = ({ to = '', target = '', margin = '0', children }) => (
         text-decoration: none;
       }
 
+      a:hover {
+        text-decoration: none;
+      }
+
+      a:hover::before {
+        opacity: 1;
+      }
+
       a::before {
         border-bottom: 2px solid #70D549;
         bottom: -5px;
         content: '';
         height: 2px;
+        opacity: 0;
         position: absolute;
+        transition: all 0.175s ease-in-out;
         width: 100%;
       }
     `}</style>
   </>
 )
 
-export default PageLink
+export default TextLink

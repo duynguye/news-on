@@ -2,22 +2,38 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'
-import StandardLayout from 'layouts/standard-layout'
+import moment from 'moment'
+import he from 'he'
 import { API_ENDPOINT } from 'config'
 
+import StandardLayout from 'layouts/standard-layout'
 import Hero from 'components/content/hero'
-import WordpressContent from 'components/content/wordpress-content'
-import CompanyModule from 'components/about/company-module'
-import PartnersModule from 'components/about/partners-module'
-import LatestNews from 'components/modules/latest-news'
-import Careers from 'components/modules/careers'
+import NewsWrapper from 'components/news/news-wrapper'
+import NewsItem from 'components/news/news-item'
 
 const Page = (props) => {
   const router = useRouter();
   const title = props.page.title.rendered || ''
   const content = props.page.content.rendered || ''
   const featured_media = props.featured_media || {}
-  const { acf = {}, partners, jobs } = props
+  const { acf = {}, latest } = props
+
+  const latestNewsItems = latest.map(article => {
+    const strippedExerpt = article.excerpt.rendered.replace(/<[^>]+>/g, '')
+
+    return (
+      <NewsItem
+        key={article.id}
+        title={article.title.rendered}
+        date={moment(article.date).format('MMMM DD, YYYY')}
+        excerpt={he.decode(strippedExerpt)}
+        image={{
+          src: article.fimg_url,
+          alt: article.fimg_alt
+        }}
+      />
+    )
+  })
 
   return (
     <StandardLayout>
@@ -27,12 +43,9 @@ const Page = (props) => {
         featured_media={featured_media}
       />
 
-      <CompanyModule />
-      <PartnersModule />
-      <LatestNews latest={props.latest} />
-      <Careers jobs={jobs} />
-
-      <WordpressContent content={content} />
+      <NewsWrapper>
+        { latestNewsItems }
+      </NewsWrapper>
     </StandardLayout>
   )
 }
@@ -40,11 +53,10 @@ const Page = (props) => {
 Page.getInitialProps = async ({ query, reduxStore }) => {
   const { dispatch } = reduxStore
   const data = await Promise.all([
-    fetch(`${API_ENDPOINT}/wp/v2/pages?slug=about`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/wp/v2/pages?slug=news`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=3`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/partners?per_page=100`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/jobs?per_page=100`).then(response => response.json())
+    fetch(`${API_ENDPOINT}/wp/v2/posts?page=1`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/wp/v2/partnersper_page=100`).then(response => response.json())
   ])
 
   dispatch({
@@ -72,9 +84,7 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
     page: data[0][0],
     latest: data[2],
     featured_media,
-    acf: acfData.acf,
-    partners: data[3],
-    jobs: data[4]
+    acf: acfData.acf
   }
 }
 
