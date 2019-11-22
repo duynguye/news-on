@@ -55,19 +55,30 @@ const NavLinkDropdown = ({ pathname, title, childItems }) => {
 
   const childItemsList = childItems.map(child => {
     const { title } = child
-    const url = new URL(child.url)
-    const { pathname } = url
-    let path = pathname.split('/')
-    path = path.filter(name => name)
+    
+    if (child.url.startsWith('http')) {
+      const url = new URL(child.url)
+      const { pathname } = url
+      let path = pathname.split('/')
+      path = path.filter(name => name)
 
-    if (path.length > 1) {
-      return (
-        <NavLinkItem key={child.ID} href={`/${path[0]}/[slug]`} as={`/${path[0]}/${path[1]}`} title={title} />
-      )
+      if (path.length > 1) {
+        return (
+          <NavLinkItem key={child.ID} href={`/${path[0]}/[slug]`} as={`/${path[0]}/${path[1]}`} title={title} />
+        )
+      } else {
+        return (
+          <NavLinkItem key={child.ID} href={`/[slug]`} as={`/${path[0]}`} title={title}/>
+        )
+      }
     } else {
-      return (
-        <NavLinkItem key={child.ID} href={`/[slug]`} as={`/${path[0]}`} title={title}/>
-      )
+      if (child.url.split('#')) {
+        const splitQuery = child.url.split('#')
+    
+        return (
+          <NavLinkItem key={child.ID} href={`/[slug]`} as={`${child.url}`} title={title}/>
+        )
+      }
     }
   })
 

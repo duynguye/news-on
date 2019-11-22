@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import { useRouter, Router } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'
 import StandardLayout from 'layouts/standard-layout'
@@ -28,8 +28,15 @@ const Page = (props) => {
   )
 }
 
-Page.getInitialProps = async ({ query, reduxStore }) => {
+Page.getInitialProps = async ({ query, reduxStore, res }) => {
   console.log('[id]', query)
+
+  // if (query.input.split('#')) {
+  //   const splitQuery = query.input.split('#')
+
+  //   Router.push(`/${splitQuery[0]}`)
+  // }
+
   const { dispatch } = reduxStore
   const data = await Promise.all([
     fetch(`${API_ENDPOINT}/wp/v2/pages?slug=${query.id}`).then(response => response.json()),
