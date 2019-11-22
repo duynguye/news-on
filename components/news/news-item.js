@@ -6,7 +6,7 @@ const NewsItem = ({ title, date, excerpt, image }) => (
   <li>
     <Link href=''>
       <a>
-        <img src='https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/close-up-photo-of-blue-jellyfish-2625275-scaled.jpg' />
+        <img src={image.src} alt={image.alt} />
         <HeadingSmall margin={`0 0 5px 0`}>{ title }</HeadingSmall>
         <span>{ date }</span>
         <p>{ excerpt }</p>
