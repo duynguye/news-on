@@ -2,7 +2,10 @@ import React from 'react'
 
 const WordpressContent = ({ content }) => (
   <>
-    <div dangerouslySetInnerHTML={{ __html: content }}></div>
+    {
+      content && <div dangerouslySetInnerHTML={{ __html: content }}></div>
+    }
+
     <style jsx>{`
       div {
         margin: 0 auto 80px;
@@ -35,7 +38,7 @@ const WordpressContent = ({ content }) => (
         font-family: 'Brandon Text', sans-serif;
         font-size: 18px;
         font-weight: 400;
-        line-height: 26px;
+        line-height: 32px;
         margin: 0;
         margin-bottom: 30px;
       }

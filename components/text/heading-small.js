@@ -12,9 +12,10 @@ const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = ''
       h3 {
         color: #004A87;
         font-family: 'Brandon Text', sans-serif;
-        font-size: 32px;
+        font-size: 24px;
         font-weight: 700;
-        line-height: 38px;
+        letter-spacing: 0.5px;
+        line-height: 28px;
         margin: ${margin};
       }
 

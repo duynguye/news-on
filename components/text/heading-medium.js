@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = '' }) => (
+const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = '', centered = false }) => (
   <>
     { 
       titleMarkup 
@@ -16,6 +16,7 @@ const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = ''
         font-weight: 700;
         line-height: 38px;
         margin: ${margin};
+        text-align: ${centered ? 'center' : 'left' }
       }
 
       .light {
