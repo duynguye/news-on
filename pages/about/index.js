@@ -28,7 +28,7 @@ const Page = (props) => {
       />
 
       <CompanyModule />
-      <PartnersModule />
+      <PartnersModule partners={partners} />
       <LatestNews latest={props.latest} />
       <Careers jobs={jobs} />
 

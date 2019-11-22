@@ -17,8 +17,6 @@ const CareersLink = ({ title, path }) => (
 )
 
 const Careers = ({ jobs = [] }) => {
-  console.log(jobs)
-
   const jobPosts = jobs.map(job => (
     <CareersLink 
       key={job.id}

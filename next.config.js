@@ -2,14 +2,17 @@ const path = require('path')
 const withSass = require('@zeit/next-sass')
 const withFonts = require('next-fonts')
 const withPlugins = require('next-compose-plugins')
+const withCSS = require('@zeit/next-css')
 
 module.exports = withPlugins([
+  withCSS,
   [
     withSass, {
       cssModules: true,
       cssLoaderOptions: {
         importLoaders: 1,
-        localIdentName: '[local]__[hash:base64:5]'
+        localIdentName: '[local]__[hash:base64:5]',
+        url: false
       },
     }
   ], 
