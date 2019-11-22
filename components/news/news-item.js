@@ -2,9 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import HeadingSmall from 'components/text/heading-small'
 
-const NewsItem = ({ title, date, excerpt, image }) => (
+const NewsItem = ({ title, date, excerpt, image, link }) => (
   <li>
-    <Link href=''>
+    <Link href={`/news${link}`}>
       <a>
         <img src={image.src} alt={image.alt} />
         <HeadingSmall margin={`0 0 5px 0`}>{ title }</HeadingSmall>

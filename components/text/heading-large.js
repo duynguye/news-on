@@ -10,6 +10,7 @@ const HeadingLarge = ({ children, light = false, margin = '0', titleMarkup = '' 
 
     <style jsx>{`
       h1 {
+        color: #015391;
         font-family: 'Brandon Text', sans-serif;
         font-size: 48px;
         font-weight: 700;

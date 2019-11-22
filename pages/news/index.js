@@ -20,6 +20,8 @@ const Page = (props) => {
 
   const latestNewsItems = latest.map(article => {
     const strippedExerpt = article.excerpt.rendered.replace(/<[^>]+>/g, '')
+    const { link } = article
+    const url = new URL(link)
 
     return (
       <NewsItem
@@ -27,6 +29,7 @@ const Page = (props) => {
         title={article.title.rendered}
         date={moment(article.date).format('MMMM DD, YYYY')}
         excerpt={he.decode(strippedExerpt)}
+        link={url.pathname}
         image={{
           src: article.fimg_url,
           alt: article.fimg_alt
