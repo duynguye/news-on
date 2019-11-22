@@ -19,7 +19,7 @@ const Page = (props) => {
     <StandardLayout>
       <div>
         <img src={props.page.fimg_url} />
-        <HeadingLarge margin={`0 0 50px 0`}>{ title }</HeadingLarge>
+        <HeadingLarge margin={`0 0 50px 0`} centered>{ title }</HeadingLarge>
       </div>
 
       <WordpressContent content={content} />
