@@ -2,7 +2,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialState = {
-  menu: {}
+  menu: {},
+  social: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         menu: action.menu
+      }
+
+    case 'SET_SOCIAL':
+      return {
+        ...state,
+        social: action.social
       }
 
     default:

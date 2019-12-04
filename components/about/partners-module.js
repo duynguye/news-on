@@ -8,7 +8,12 @@ const content = 'NewsON partners with 16 station groups to provide viewers with 
 
 const PartnersSlider = ({ partners }) => {
   const params = {
+    autoplay: {
+      delay: 0
+    },
     direction: 'horizontal',
+    loop: true,
+    speed: 3000,
     slidesPerView: 4,
     spaceBetween: 30
   }
@@ -68,21 +73,23 @@ const PartnersSlider = ({ partners }) => {
           margin: 0 auto;
           width: ${8.33333 * 10}vw;
         }
+
+        .swiper-wrapper {
+          transition-timing-function: ease-in-out;
+        }
       `}</style>
     </>
   )
 }
 
-const PartnersModule = ({ partners }) => {
+const PartnersModule = ({ title, content, partners }) => {
   return (
     <section>
       <div className='title'>
         <h2>{ title }</h2>
       </div>
 
-      <div className='content'>
-        <p>{ content }</p>
-      </div>
+      <div className='content' dangerouslySetInnerHTML={{ __html: content }} />
 
       <PartnersSlider partners={partners} />
 

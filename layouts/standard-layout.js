@@ -16,6 +16,7 @@ const StandardLayout = ({ children }) => (
     <style jsx global>{`
       html, body {
         margin: 0;
+        overflow-x: hidden;
         padding: 0;
         -webkit-font-smoothing: antialiased;
 	      -moz-osx-font-smoothing: grayscale;

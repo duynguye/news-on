@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'
 import StandardLayout from 'layouts/standard-layout'
 import { API_ENDPOINT } from 'config'
+import { Helmet } from 'react-helmet'
 
 import Hero from 'components/content/hero'
 import WordpressContent from 'components/content/wordpress-content'
@@ -18,17 +19,37 @@ const Page = (props) => {
   const content = props.page.content.rendered || ''
   const featured_media = props.featured_media || {}
   const { acf = {}, partners, jobs } = props
+  const { yoast_meta = {} } = props.page || {}
+  const pageTitle = yoast_meta.yoast_wpseo_title || ''
+
+  const {
+    about_title = '',
+    about_content = '',
+    about_partners_title = '',
+    about_partners_content = ''
+  } = acf
 
   return (
     <StandardLayout>
+      { pageTitle && <Helmet title={pageTitle} /> }
+
       <Hero 
         title={title} 
         content={acf.hero_content || ''} 
         featured_media={featured_media}
       />
 
-      <CompanyModule />
-      <PartnersModule partners={partners} />
+      <CompanyModule 
+        title={about_title}
+        content={about_content}
+      />
+      
+      <PartnersModule 
+        title={about_partners_title}
+        content={about_partners_content}
+        partners={partners}
+      />
+
       <LatestNews latest={props.latest} />
       <Careers jobs={jobs} />
 
@@ -44,8 +65,19 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=3`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/wp/v2/partners?per_page=100`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/jobs?per_page=100`).then(response => response.json())
+    fetch(`${API_ENDPOINT}/wp/v2/jobs?per_page=100`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
   ])
+
+  let social = []
+  if (data[5] && data[5].acf && data[5].acf.social_links) {
+    social = data[5].acf.social_links
+
+    dispatch({
+      type: 'SET_SOCIAL',
+      social
+    })
+  }
 
   dispatch({
     type: 'SET_MENU',

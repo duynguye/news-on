@@ -5,6 +5,7 @@ import { withRedux } from 'config/redux'
 import moment from 'moment'
 import he from 'he'
 import { API_ENDPOINT } from 'config'
+import { Helmet } from 'react-helmet'
 
 import StandardLayout from 'layouts/standard-layout'
 import Hero from 'components/content/hero'
@@ -17,6 +18,8 @@ const Page = (props) => {
   const content = props.page.content.rendered || ''
   const featured_media = props.featured_media || {}
   const { acf = {}, latest } = props
+  const { yoast_meta = {} } = props.page || {}
+  const pageTitle = yoast_meta.yoast_wpseo_title || ''
 
   const latestNewsItems = latest.map(article => {
     const strippedExerpt = article.excerpt.rendered.replace(/<[^>]+>/g, '')
@@ -40,6 +43,8 @@ const Page = (props) => {
 
   return (
     <StandardLayout>
+      { pageTitle && <Helmet title={pageTitle} /> }
+      
       <Hero 
         title={title} 
         content={acf.hero_content || ''} 
@@ -58,9 +63,24 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
   const data = await Promise.all([
     fetch(`${API_ENDPOINT}/wp/v2/pages?slug=news`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/posts?page=1`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/partnersper_page=100`).then(response => response.json())
+    fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=9&page=1`).then(response => {
+      console.log(response.headers)
+      
+      return response.json()
+    }),
+    fetch(`${API_ENDPOINT}/wp/v2/partnersper_page=100`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
   ])
+
+  let social = []
+  if (data[4] && data[4].acf && data[4].acf.social_links) {
+    social = data[4].acf.social_links
+
+    dispatch({
+      type: 'SET_SOCIAL',
+      social
+    })
+  }
 
   dispatch({
     type: 'SET_MENU',

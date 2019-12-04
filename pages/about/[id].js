@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'
 import StandardLayout from 'layouts/standard-layout'
 import { API_ENDPOINT } from 'config'
+import { Helmet } from 'react-helmet'
 
 import Hero from 'components/content/hero'
 import WordpressContent from 'components/content/wordpress-content'
@@ -14,9 +15,13 @@ const Page = (props) => {
   const content = props.page.content.rendered || ''
   const featured_media = props.featured_media || {}
   const { acf = {} } = props
+  const { yoast_meta = {} } = props.page || {}
+  const pageTitle = yoast_meta.yoast_wpseo_title || ''
 
   return (
     <StandardLayout>
+      { pageTitle && <Helmet title={pageTitle} /> }
+      
       <Hero 
         title={title} 
         content={acf.hero_content || ''} 
@@ -29,19 +34,22 @@ const Page = (props) => {
 }
 
 Page.getInitialProps = async ({ query, reduxStore, res }) => {
-  console.log('[id]', query)
-
-  // if (query.input.split('#')) {
-  //   const splitQuery = query.input.split('#')
-
-  //   Router.push(`/${splitQuery[0]}`)
-  // }
-
   const { dispatch } = reduxStore
   const data = await Promise.all([
     fetch(`${API_ENDPOINT}/wp/v2/pages?slug=${query.id}`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
   ])
+
+  let social = []
+  if (data[2] && data[2].acf && data[2].acf.social_links) {
+    social = data[2].acf.social_links
+
+    dispatch({
+      type: 'SET_SOCIAL',
+      social
+    })
+  }
 
   dispatch({
     type: 'SET_MENU',

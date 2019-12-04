@@ -1,17 +1,12 @@
 import React from 'react'
 
-const title = 'The Company'
-const content = 'Watch local news for free from anywhere in the country with NewsON. The free, app provides instant access to live or on-demand newscasts from over 280trusted local TV station partners in over 160 markets. NewsON is available for download on Roku streaming players, Amazon Fire TV, Apple TV, and iOS and Android mobile devices. Viewers can personalize their experience by setting favorite stations, and watch breaking news coverage of major events and storms from multiple local stations. Stay connected anytime, anywhere without a cable subscription or login.'
-
-const CompanyModule = () => (
+const CompanyModule = ({ title, content }) => (
   <section>
     <div className='title'>
       <h2>{ title }</h2>
     </div>
 
-    <div className='content'>
-      <p>{ content }</p>
-    </div>
+    <div className='content' dangerouslySetInnerHTML={{ __html: content }} />
 
     <style jsx>{`
       section {

@@ -14,8 +14,33 @@ const useMenu = () => {
   )
 }
 
+const useSocial = () => {
+  return useSelector(
+    state => ({
+      social: state.social
+    }),
+    shallowEqual
+  )
+}
+
+const SocialIcon = ({ icon, url }) => (
+  <a href={url} target='_blank'>
+    <FontAwesomeIcon icon={icon} />
+
+    <style jsx>{`
+      a {
+        color: #008FD6;
+        display: inline-flex;
+        font-size: 18px;
+        margin-left: 32px;
+      }  
+    `}</style>
+  </a>
+)
+
 const NavigationMenu = () => {
   const { menu } = useMenu()
+  const { social } = useSocial()
   const { items } = menu
 
   const navigationLinks = items.map(item => {
@@ -34,24 +59,26 @@ const NavigationMenu = () => {
     }
   })
 
+  const socialLinks = social.map((item, id) => {
+    switch (item.icon) {
+      case 'twitter':
+        return <SocialIcon icon={faTwitter} url={item.url} key={id} />
+
+      case 'facebook-f':
+        return <SocialIcon icon={faFacebookF} url={item.url} key={id} />
+
+      case 'linkedin-in':
+        return <SocialIcon icon={faLinkedinIn} url={item.url} key={id} />
+
+      case 'instagram':
+          return <SocialIcon icon={faInstagram} url={item.url} key={id} />
+    }
+  })
+
   return (
     <div className='wrapper'>
       <div className='social'>
-        <a href='https://compulse.com' target='_blank'>
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-
-        <a href='https://compulse.com' target='_blank'>
-          <FontAwesomeIcon icon={faFacebookF} />
-        </a>
-
-        <a href='https://compulse.com' target='_blank'>
-          <FontAwesomeIcon icon={faLinkedinIn} />
-        </a>
-
-        <a href='https://compulse.com' target='_blank'>
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
+        { socialLinks }
       </div>
 
       <ul>
@@ -80,13 +107,6 @@ const NavigationMenu = () => {
           display: flex;
           flex: 1;
           margin-right: 20px;
-        }
-
-        a {
-          color: #008FD6;
-          display: inline-flex;
-          font-size: 18px;
-          margin-left: 32px;
         }
       `}</style>
     </div>

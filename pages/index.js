@@ -6,6 +6,7 @@ import React from 'react'
 import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'
 import { API_ENDPOINT } from 'config'
+import { Helmet } from 'react-helmet'
 
 import StandardLayout from 'layouts/standard-layout'
 import PrimaryHero from 'components/primary-hero'
@@ -26,10 +27,11 @@ const WrappedBadge = ({ image = '', link = '' }) => (
   </div>
 )
 
-const Home = ({ featured_image, primary_hero, badges }) => {
+const Home = ({ featured_image, primary_hero, badges, yoast }) => {
   const { primary_hero_image, primary_hero_title, primary_hero_content } = primary_hero
   const mobileBadges = badges.filter(badge => badge.platform === 'mobile')
   const tvBadges = badges.filter(badge => badge.platform === 'tv')
+  const pageTitle = yoast.yoast_wpseo_title || ''
 
   const mobileBadgesList = mobileBadges.map(badge => (
     <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
@@ -41,6 +43,8 @@ const Home = ({ featured_image, primary_hero, badges }) => {
 
   return (
     <StandardLayout>
+      { pageTitle && <Helmet title={pageTitle} /> }
+
       <PrimaryHero 
         title={primary_hero_title}
         content={primary_hero_content}
@@ -136,15 +140,22 @@ Home.getInitialProps = async ({ reduxStore }) => {
     }
   }
 
-  let badges = []
-  let page_acf = {}
+  let badges = [], social = []
+  let page_acf = {}, page_yoast = {}
 
   if (data[0].id) {
     page_acf = await fetch(`${API_ENDPOINT}/acf/v3/pages/${data[0].id}`).then(response => response.json())
+    page_yoast = await fetch(`${API_ENDPOINT}/wp/v2/pages/${data[0].id}`).then(response => response.json())
   }
 
   if (data[2] && data[2].acf && data[2].acf.app_links) {
     badges = data[2].acf.app_links
+    social = data[2].acf.social_links
+
+    dispatch({
+      type: 'SET_SOCIAL',
+      social
+    })
   }
 
   dispatch({
@@ -156,7 +167,8 @@ Home.getInitialProps = async ({ reduxStore }) => {
     page: data[0],
     featured_image: image,
     primary_hero: page_acf && page_acf.acf,
-    badges
+    badges,
+    yoast: page_yoast.yoast_meta
   }
 }
 
