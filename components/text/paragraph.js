@@ -17,6 +17,13 @@ const Paragraph = ({ children, light = false, margin = '0' }) => (
       .light {
         color: #ffffff;
       }
+
+      @media screen and (max-width: 500px) {
+        p {
+          font-size: 16px;
+          line-height: 26px;
+        }  
+      }
     `}</style>
   </>
 )

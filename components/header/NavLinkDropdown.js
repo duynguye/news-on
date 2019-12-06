@@ -89,7 +89,7 @@ const NavLinkDropdown = ({ pathname, title, childItems }) => {
     >
       <Link href={`/[slug]`} as={`/${path[0]}`}>
         <a>
-          { title}
+          { title }
           <FontAwesomeIcon icon={faCaretDown} height='12' width='10' style={{ marginLeft: 7 }} />
         </a>
       </Link>

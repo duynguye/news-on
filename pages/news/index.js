@@ -68,7 +68,7 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
       
       return response.json()
     }),
-    fetch(`${API_ENDPOINT}/wp/v2/partnersper_page=100`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/wp/v2/partners?per_page=100`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
   ])
 

@@ -95,6 +95,7 @@ const NavigationMenu = () => {
           margin: 0;
           padding: 0;
         }
+
         div.wrapper {
           align-items: flex-end;
           display: flex;
@@ -107,6 +108,16 @@ const NavigationMenu = () => {
           display: flex;
           flex: 1;
           margin-right: 20px;
+        }
+
+        @media screen and (max-width: 500px) {
+          ul {
+            display: none;
+          }
+
+          div.social {
+            display: none;
+          }
         }
       `}</style>
     </div>

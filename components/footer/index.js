@@ -10,7 +10,7 @@ const FooterLink = ({ to, children }) => (
     <style jsx>{`
       li {
         list-style: none;
-        margin: 0 20px;
+        margin: 0 20px 20px;
       }
 
       a {
@@ -18,7 +18,13 @@ const FooterLink = ({ to, children }) => (
         font-family: 'Brandon Text', sans-serif;
         font-weight: 400;
         text-decoration: none;
-      }  
+      }
+      
+      @media screen and (max-width: 500px) {
+        a {
+          font-size: 14px;
+        }  
+      }
     `}</style>
   </li>
 )
@@ -87,9 +93,24 @@ const Footer = () => (
       ul {
         display: flex;
         flex-direction: row;
+        flex-flow: row wrap;
         justify-content: center;
-        margin: 0;
+        margin: 0 0 -20px;
         padding: 0;
+      }
+
+      @media screen and (max-width: 500px) {
+        div.copyright {
+          padding: ${8.33333 / 2}vw;
+        }
+
+        span {
+          font-size: 14px;
+        }
+
+        div.copyright span:last-child {
+          text-align: right;
+        }  
       }
     `}</style>
   </footer>

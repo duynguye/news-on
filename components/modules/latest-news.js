@@ -48,6 +48,17 @@ const LatestNews = ({ latest = [] }) => {
           margin: 0 auto;
           width: ${8.33333 * 5}vw;
         }
+
+        @media screen and (max-width: 500px) {
+          section {
+            padding: 40px 0;
+          }
+          
+          div {
+            padding: 0 8.33333vw;
+            width: 100%;
+          }
+        }
       `}</style>
     </section>
   )

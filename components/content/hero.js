@@ -14,6 +14,14 @@ const FeaturedMedia = ({ alt_text, source_url }) => (
         position: absolute;
         width: 100%;
       }  
+
+      @media screen and (max-width: 500px) {
+        img {
+          display: block;
+          height: 200px;
+          position: relative;
+        }
+      }
     `}</style>
   </div>
 )
@@ -41,12 +49,32 @@ const Hero = ({ title, content = '', featured_media = {} }) => (
 
       div.left {
         flex: 0 1 54.16667vw;
+        margin-bottom: ${ content ? 0 : -30 }px;
         padding: 85px 8.33333vw;
       }
 
       div.right {
         flex: 1;
         position: relative;
+      }
+
+      @media screen and (max-width: 500px) {
+        section {
+          flex-wrap: wrap;
+          margin-bottom: 40px;
+        }
+
+        div.left {
+          flex: 1 1 100%;
+          padding: 60px 8.33333vw;
+          width: 100%;
+        }
+
+        div.right {
+          flex: 1 1 100%;
+          width: 100%;
+        }
+
       }
     `}</style>
   </section>

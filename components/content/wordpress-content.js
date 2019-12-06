@@ -88,7 +88,21 @@ const WordpressContent = ({ content }) => (
       :global(li > ul) {
         margin-top: 30px;
       }
-      
+
+      @media screen and (max-width: 500px) {
+        div {
+          margin: 0 auto 40px;
+          padding: 0 8.33333vw;
+          width: 100%;
+        }
+
+        :global(p),
+        :global(li) {
+          font-size: 16px;
+          line-height: 28px;
+          margin-bottom: 20px;
+        }
+      }
     `}</style>
   </>
 )

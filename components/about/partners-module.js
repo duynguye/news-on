@@ -14,8 +14,18 @@ const PartnersSlider = ({ partners }) => {
     direction: 'horizontal',
     loop: true,
     speed: 3000,
-    slidesPerView: 4,
-    spaceBetween: 30
+    slidesPerView: 1,
+    spaceBetween: 30,
+
+    breakpoints: {
+      500: {
+        slidesPerView: 2,
+      },
+
+      900: {
+        slidesPerView: 4
+      }
+    }
   }
 
   const partnersList = partners.map(partner => {
@@ -114,6 +124,24 @@ const PartnersModule = ({ title, content, partners }) => {
 
         p {
           margin-bottom: 0;
+        }
+
+        @media screen and (max-width: 500px) {
+          section {
+            padding: 40px 0;
+          }
+
+          div.title {
+            margin-bottom: -30px;
+            padding: 0 8.33333vw;
+            width: 100%;
+          }
+
+          div.content {
+            margin-bottom: 20px;
+            padding: 8.33333vw;
+            width: 100%;
+          }
         }
       `}</style>
     </section>

@@ -13,6 +13,12 @@ const WrappedBadge = ({ image = '', link = '' }) => (
       div {
         margin: 0 30px 30px 0;
       }  
+
+      @media screen and (max-width: 500px) {
+        div {
+          margin: 0 20px 20px 0;
+        }  
+      }
     `}</style>
   </div>
 )
@@ -61,6 +67,7 @@ const PrimaryHero = (props) => {
       style={{ 
         alignItems: 'center',
         display: 'flex',
+        flexFlow: 'row wrap',
         padding: '50px 0',
         position: 'relative'
       }}
@@ -128,6 +135,16 @@ const PrimaryHero = (props) => {
         div.heroImage img {
           max-height: 275px;
           width: auto;
+        }
+
+        @media screen and (max-width: 500px) {
+          div.heroContent {
+            width: 100%;
+          }
+
+          div.heroBadges {
+            max-width: 100%;
+          }
         }
       `}</style>
     </motion.div>

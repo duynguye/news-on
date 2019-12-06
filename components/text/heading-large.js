@@ -22,6 +22,13 @@ const HeadingLarge = ({ children, light = false, margin = '0', titleMarkup = '',
       .light {
         color: #ffffff;
       }
+
+      @media screen and (max-width: 500px) {
+        h1 {
+          font-size: 30px;
+          line-height: 40px;
+        }  
+      }
     `}</style>
   </>
 )

@@ -38,8 +38,21 @@ const Page = (props) => {
           justify-content: center;
           align-items: center;
         }
+
         img {
           margin-bottom: 60px;
+        }
+
+        @media screen and (max-width: 500px) {
+          div {
+            margin-top: -40px;
+            padding: 40px 0 0;
+            width: 100vw;
+          }
+
+          img {
+            width: 100%;
+          }
         }
       `}</style>
     </StandardLayout>

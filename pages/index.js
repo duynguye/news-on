@@ -23,6 +23,12 @@ const WrappedBadge = ({ image = '', link = '' }) => (
       div {
         margin: 0 15px;
       }  
+
+      @media screen and (max-width: 500px) {
+        div {
+          margin: 0 10px;
+        }  
+      }
     `}</style>
   </div>
 )
@@ -111,6 +117,21 @@ const Home = ({ featured_image, primary_hero, badges, yoast }) => {
         div.badgeWrapper {
           display: flex;
           flex-wrap: wrap;
+        }
+
+        @media screen and (max-width: 500px) {
+          div.wrapper {
+            flex-flow: row wrap;
+            padding: 100px 0 60px 0;
+          }
+
+          div.section {
+            width: 100%;
+          }
+
+          div.section:first-child {
+            margin-bottom: 40px;
+          }
         }
       `}</style>
     </StandardLayout>

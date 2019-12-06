@@ -9,6 +9,13 @@ const Badge = ({ src = '', link = '' }) => (
         height: 50px;
         width: 150px;
       }
+
+      @media screen and (max-width: 500px) {
+        img {
+          height: 40px;
+          width: 130px
+        }  
+      }
     `}</style>
   </a>
 )

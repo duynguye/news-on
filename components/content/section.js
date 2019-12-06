@@ -34,6 +34,14 @@ const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = f
       img.foreground.special {
         transform: translateX(-50%) translateY(23.21%);
       }
+
+      @media screen and (max-width: 500px) {
+        div {
+          height: 275px;
+          order: 2;
+          width: 100%;
+        }
+      }
     `}</style>
   </div>
 )
@@ -68,6 +76,15 @@ const TextSection = ({ order = 2, content, centered, title, titleSize, to }) => 
       .centered {
         align-items: center;
         text-align: center;
+      }
+
+      @media screen and (max-width: 500px) {
+        div {
+          margin-bottom: ${titleSize === 'small' ? -24 : 0 }px;
+          order: 1;
+          padding: ${8.33333 * 2}vw 8.33333vw;
+          width: 100%;
+        }
       }
     `}</style>
   </div>
@@ -106,6 +123,7 @@ const Section = ({
         section {
           display: flex;
           flex-direction: row;
+          flex-flow: row wrap;
         }
       `}</style>
     </section>
