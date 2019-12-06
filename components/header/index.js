@@ -97,7 +97,7 @@ const Header = ({ }) => {
       <NavigationMenu />
       
       <button onClick={toggleDrawer(true)}>
-        <FontAwesomeIcon icon={faBars} />
+        <FontAwesomeIcon icon={faBars} height={30} width={30} />
       </button>
 
       <SwipeableDrawer
@@ -122,6 +122,7 @@ const Header = ({ }) => {
         }
 
         button {
+          appearance: none;
           display: none;
           font-size: 24px;
         }
