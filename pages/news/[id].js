@@ -15,7 +15,6 @@ const Page = (props) => {
   const content = props.page.content.rendered || ''
   const { yoast_meta = {} } = props.page || {}
   const pageTitle = yoast_meta.yoast_wpseo_title || ''
-  // const { acf = {} } = props
 
   return (
     <StandardLayout>
@@ -23,7 +22,7 @@ const Page = (props) => {
       
       <div>
         <img src={props.page.fimg_url} />
-        <HeadingLarge margin={`0 0 50px 0`} centered>{ title }</HeadingLarge>
+        <HeadingLarge margin={`0 0 3vw 0`} centered>{ title }</HeadingLarge>
       </div>
 
       <WordpressContent content={content} />
@@ -82,18 +81,8 @@ Page.getInitialProps = async ({ query, reduxStore, res }) => {
     menu: data[1]
   })
 
-  // // Query ACF Content
-  // let acfData = {}
-
-  // if (data[0][0].id) {
-  //   const pageID = data[0][0].id
-
-  //   acfData = await fetch(`${API_ENDPOINT}/acf/v3/pages/${pageID}`).then(response => response.json())
-  // }
-
   return {
-    page: data[0][0],
-    // acf: acfData.acf
+    page: data[0][0]
   }
 }
 

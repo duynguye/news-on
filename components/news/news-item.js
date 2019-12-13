@@ -77,6 +77,35 @@ const NewsItem = ({ title, date, excerpt, image, link }) => (
         margin-bottom: 40px;
         width: 100%;  
       }
+
+      @media screen and (min-width: 2000px) {
+        li {
+          margin: 0 1.5vw 2vw;
+          width: calc(${100 / 3}% - 3vw);
+        }
+
+        a {
+          height: calc(100% - 2vw);
+          margin-top: 2vw;
+          padding: 0 2vw 2vw;
+        }
+
+        span {
+          font-size: 0.7vw;
+        }
+
+        p {
+          font-size: 0.9vw;
+          line-height: 1.75;
+        }
+
+        img {
+          margin-top: -2vw;
+          margin-bottom: 2.5vw;
+          height: 16vw;
+        }
+      }
+
     `}</style>
   </li>
 )

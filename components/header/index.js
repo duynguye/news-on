@@ -38,7 +38,14 @@ const SocialIcon = ({ icon, url }) => (
         display: inline-flex;
         font-size: 18px;
         margin-left: 32px;
-      }  
+      }
+
+      @media screen and (max-width: 2000px) {
+        a {
+          font-size: 1vw;
+          margin-left: 2vw;
+        }
+      }
     `}</style>
   </a>
 )
@@ -129,6 +136,13 @@ const Header = ({ }) => {
           display: none;
           font-size: 24px;
           padding: 10px 15px;
+        }
+
+        @media screen and (min-width: 2500px) {
+          header {
+            height: 200px;
+            padding: 0 128px;
+          }
         }
 
         @media screen and (max-width: 500px) {

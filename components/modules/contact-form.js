@@ -283,6 +283,16 @@ const ContactForm = () => {
           padding: 16px 60px;
         }
 
+        @media screen and (max-width: 1100px) {
+          div {
+            padding: 40px ${8.33333 * 3}vw;
+          }
+
+          div.field-groups {
+            width: 100%;
+          }
+        }
+
         @media screen and (max-width: 500px) {
           div {
             padding: 40px 8.33333vw;

@@ -13,7 +13,13 @@ const FeaturedMedia = ({ alt_text, source_url }) => (
         object-fit: cover;
         position: absolute;
         width: 100%;
-      }  
+      } 
+      
+      @media screen and (min-width: 2000px) {
+        img {
+          height: calc(100% + 5vw);
+        }
+      }
 
       @media screen and (max-width: 500px) {
         img {
@@ -56,6 +62,16 @@ const Hero = ({ title, content = '', featured_media = {} }) => (
       div.right {
         flex: 1;
         position: relative;
+      }
+
+      @media screen and (min-width: 2000px) {
+        section {
+          margin-bottom: 10vw;
+        }
+
+        div.left {
+          padding: 5vw 8.33333vw;
+        }
       }
 
       @media screen and (max-width: 500px) {

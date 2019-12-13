@@ -42,6 +42,12 @@ const TextLink = ({ to = '', external = false, margin = '0', children }) => (
         transition: all 0.175s ease-in-out;
         width: 100%;
       }
+
+      @media screen and (min-width: 2000px) {
+        a {
+          font-size: 1vw;
+        }
+      }
     `}</style>
   </>
 )

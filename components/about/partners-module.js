@@ -87,6 +87,12 @@ const PartnersSlider = ({ partners }) => {
         .swiper-wrapper {
           transition-timing-function: ease-in-out;
         }
+
+        @media screen and (min-width: 2000px) {
+          .partners-container {
+            height: 10vw;
+          }
+        }
       `}</style>
     </>
   )
@@ -124,6 +130,16 @@ const PartnersModule = ({ title, content, partners }) => {
 
         p {
           margin-bottom: 0;
+        }
+
+        @media screen and (min-width: 2000px) {
+          section {
+            padding: 5vw 0;
+          }
+
+          h2 {
+            margin-bottom: 2vw;
+          }
         }
 
         @media screen and (max-width: 500px) {

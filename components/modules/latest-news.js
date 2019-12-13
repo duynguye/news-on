@@ -30,8 +30,8 @@ const LatestNews = ({ latest = [] }) => {
   return (
     <section>
       <div>
-        <HeadingMedium centered margin={`0 0 35px 0`}>Latest News</HeadingMedium>
-        <Paragraph margin={`0 0 50px 0`}>Sem et tortor consequat id porta nibh venenatis. Facilisi morbi tempus iaculis urna id volutpat lacus. Suspendisse. Ultrices vitae auctor eu augue.</Paragraph>
+        <HeadingMedium centered margin={`0 0 3vw 0`}>Latest News</HeadingMedium>
+        <Paragraph margin={`0 0 4vw 0`}>Sem et tortor consequat id porta nibh venenatis. Facilisi morbi tempus iaculis urna id volutpat lacus. Suspendisse. Ultrices vitae auctor eu augue.</Paragraph>
       </div>
 
       <NewsWrapper>
@@ -47,6 +47,12 @@ const LatestNews = ({ latest = [] }) => {
         div {
           margin: 0 auto;
           width: ${8.33333 * 5}vw;
+        }
+
+        @media screen and (min-width: 2000px) {
+          section {
+            padding: 4vw 0 3vw;
+          }
         }
 
         @media screen and (max-width: 500px) {

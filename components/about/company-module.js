@@ -24,7 +24,13 @@ const CompanyModule = ({ title, content }) => (
       div.content {
         padding-left: ${8.33333 / 2}vw;
         width: ${8.33333 * 7}vw;
-      } 
+      }
+
+      @media screen and (min-width: 2000px) {
+        section {
+          padding: 5vw 0;
+        }
+      }
 
       @media screen and (max-width: 500px) {
         section {

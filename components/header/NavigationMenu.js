@@ -34,6 +34,13 @@ const SocialIcon = ({ icon, url }) => (
         font-size: 18px;
         margin-left: 32px;
       }  
+
+      @media screen and (min-width: 2000px) {
+        a {
+          font-size: 0.9vw;
+          margin-left: 2vw;
+        }
+      }
     `}</style>
   </a>
 )

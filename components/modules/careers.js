@@ -61,6 +61,12 @@ const Careers = ({ jobs = [] }) => {
           margin: 0;
           padding: 0;
         }
+
+        @media screen and (min-width: 2000px) {
+          section {
+            padding: 4.5vw 0;
+          }
+        }
       `}</style>
     </section>
   )

@@ -89,6 +89,40 @@ const WordpressContent = ({ content }) => (
         margin-top: 30px;
       }
 
+      @media screen and (min-width: 2000px) {
+        :global(h2) {
+          font-size: 2vw;
+          line-height: 1.2;
+        }
+
+        :global(h3) {
+          font-size: 1.5vw;
+          line-height: 1.5;
+        }
+
+        :global(p) {
+          font-size: 0.9vw;
+          line-height: 1.75;
+          margin-bottom: 1.5vw;
+        }
+
+        :global(ul) {
+          padding-left: 3vw;
+        }
+
+        :global(li) {
+          font-size: 1vw;
+          line-height: 1.5;
+        }
+      }
+
+      @media screen and (max-width: 1100px) {
+        div {
+          padding: 0 ${8.33333 * 2}vw;
+          width: 100%;
+        }
+      }
+
       @media screen and (max-width: 500px) {
         div {
           margin: 0 auto 40px;

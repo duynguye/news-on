@@ -19,6 +19,16 @@ const FooterLink = ({ to, children }) => (
         font-weight: 400;
         text-decoration: none;
       }
+
+      @media screen and (min-width: 2000px) {
+        li {
+          margin: 0 1.75vw 20px;
+        }
+
+        a {
+          font-size: 0.9vw;
+        }
+      }
       
       @media screen and (max-width: 500px) {
         a {
@@ -32,7 +42,9 @@ const FooterLink = ({ to, children }) => (
 const Footer = () => (
   <footer>
     <div className={'navigation'}>
-      <img src='https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/logo_white@2x.png' />
+      <Link href={`/`}>
+        <a><img src='https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/logo_white@2x.png' /></a>
+      </Link>
 
       <ul>
         <FooterLink to='/about'>About</FooterLink>
@@ -97,6 +109,26 @@ const Footer = () => (
         justify-content: center;
         margin: 0 0 -20px;
         padding: 0;
+      }
+
+      @media screen and (min-width: 2000px) {
+        img {
+          height: 120px;
+          margin-bottom: 100px;
+        }
+
+        div.navigation {
+          padding: 3vw 0;
+        }
+
+        div.copyright {
+          padding: 1.1vw 8.33333vw;
+        }
+
+        span {
+          font-size: 0.8vw;
+          line-height: 1;
+        }
       }
 
       @media screen and (max-width: 500px) {

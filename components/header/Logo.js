@@ -9,10 +9,16 @@ const Logo = () => (
       </a>
     </Link>
 
-    <style jsx>{`
+    <style jsx>{`      
       img {
         height: 52px;
         width: auto;
+      }
+
+      @media screen and (min-width: 2000px) {
+        img {
+          height: 100px;
+        }
       }
     `}</style>
   </>

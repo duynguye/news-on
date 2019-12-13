@@ -23,6 +23,13 @@ const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = ''
         color: #ffffff;
       }
 
+      @media screen and (min-width: 2000px) {
+        h2 {
+          font-size: 2vw;
+          line-height: 1.2;
+        }
+      }
+
       @media screen and (max-width: 500px) { 
         h2 {
           font-size: 28px;

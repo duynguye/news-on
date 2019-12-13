@@ -22,6 +22,13 @@ const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = ''
       .light {
         color: #ffffff;
       }
+
+      @media screen and (min-width: 2000px) {
+        h3 {
+          font-size: 1.5vw;
+          line-height: 1.5;
+        }
+      }
     `}</style>
   </>
 )

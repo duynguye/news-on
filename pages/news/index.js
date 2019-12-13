@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'
@@ -12,16 +12,16 @@ import Hero from 'components/content/hero'
 import NewsWrapper from 'components/news/news-wrapper'
 import NewsItem from 'components/news/news-item'
 
-const Page = (props) => {
+const Page = ({ page, acf = {}, featured_media = {}, latest, headers }) => {
   const router = useRouter();
-  const title = props.page.title.rendered || ''
-  const content = props.page.content.rendered || ''
-  const featured_media = props.featured_media || {}
-  const { acf = {}, latest } = props
-  const { yoast_meta = {} } = props.page || {}
+  const [currentPage, setPage] = useState(1)
+  const [posts, setPosts] = useState(latest)
+
+  const title = page.title.rendered || ''
+  const { yoast_meta = {} } = page || {}
   const pageTitle = yoast_meta.yoast_wpseo_title || ''
 
-  const latestNewsItems = latest.map(article => {
+  const latestNewsItems = posts.map(article => {
     const strippedExerpt = article.excerpt.rendered.replace(/<[^>]+>/g, '')
     const { link } = article
     const url = new URL(link)
@@ -41,6 +41,23 @@ const Page = (props) => {
     )
   })
 
+  const loadMore = () => {
+
+    if ( currentPage < headers.totalPages ) {
+      const fetchPosts = async () => {
+        const loadedPosts = await fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=9&page=${currentPage + 1}`)
+          .then(response => response.json())
+
+        setPosts([ ...posts, ...loadedPosts ])
+        setPage(currentPage + 1)
+
+        console.log(posts)
+      }
+
+      fetchPosts();
+    }
+  }
+
   return (
     <StandardLayout>
       { pageTitle && <Helmet title={pageTitle} /> }
@@ -54,22 +71,52 @@ const Page = (props) => {
       <NewsWrapper>
         { latestNewsItems }
       </NewsWrapper>
+
+      { currentPage < headers.totalPages && <button onClick={() => loadMore()}>Show More</button> }
+
+      <style jsx>{`
+        button {
+          appearance: none;
+          background-color: #008FD6;
+          border: none;
+          border-radius: 3px;
+          color: white;
+          cursor: pointer;
+          display: block;
+          font-family: 'Brandon Text', sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          margin: 0 auto 60px;
+          padding: 16px 46px;
+        }  
+
+        @media screen and (min-width: 2000px) {
+          button {
+            border-radius: 0.2vw;
+            font-size: 0.9vw;
+            padding: 1vw 3vw;
+          }
+        }
+      `}</style>
     </StandardLayout>
   )
 }
 
 Page.getInitialProps = async ({ query, reduxStore }) => {
   const { dispatch } = reduxStore
+
   const data = await Promise.all([
     fetch(`${API_ENDPOINT}/wp/v2/pages?slug=news`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=9&page=1`).then(response => {
-      console.log(response.headers)
-      
-      return response.json()
-    }),
+    fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=9&page=1`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/wp/v2/partners?per_page=100`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
+    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=9`).then(response => {
+      return {
+        total: response.headers.get('x-wp-total'),
+        totalPages: response.headers.get('x-wp-totalpages')
+      }
+    })
   ])
 
   let social = []
@@ -107,7 +154,8 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
     page: data[0][0],
     latest: data[2],
     featured_media,
-    acf: acfData.acf
+    acf: acfData.acf,
+    headers: data[5]
   }
 }
 

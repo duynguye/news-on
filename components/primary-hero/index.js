@@ -68,7 +68,7 @@ const PrimaryHero = (props) => {
         alignItems: 'center',
         display: 'flex',
         flexFlow: 'row wrap',
-        padding: '50px 0',
+        padding: '5vw 0',
         position: 'relative'
       }}
     >
@@ -135,6 +135,21 @@ const PrimaryHero = (props) => {
         div.heroImage img {
           max-height: 275px;
           width: auto;
+        }
+
+        @media screen and (min-width: 2000px) {
+          h2 {
+            font-size: 2vw;
+            line-height: 1.2;
+          }
+
+          div.heroImage img {
+            max-height: 20vw;
+          }
+
+          div.heroBadges {
+            max-width: 14vw;
+          }
         }
 
         @media screen and (max-width: 500px) {

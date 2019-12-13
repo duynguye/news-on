@@ -48,6 +48,16 @@ const NavLink = ({ pathname, title }) => {
           font-weight: 500;
           text-decoration: none;
         }
+
+        @media screen and (min-width: 2000px) {
+          li {
+            margin: 0 1vw;
+          }
+          
+          a {
+            font-size: 0.9vw;
+          }
+        }
       `}</style>
     </li>
   )

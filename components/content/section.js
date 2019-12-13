@@ -35,6 +35,12 @@ const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = f
         transform: translateX(-50%) translateY(23.21%);
       }
 
+      @media screen and (min-width: 2000px) {
+        div {
+          height: 40vw;
+        }
+      }
+
       @media screen and (max-width: 500px) {
         div {
           height: 275px;

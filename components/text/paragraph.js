@@ -18,6 +18,13 @@ const Paragraph = ({ children, light = false, margin = '0' }) => (
         color: #ffffff;
       }
 
+      @media screen and (min-width: 2000px) {
+        p {
+          font-size: 1vw;
+          line-height: 1.75;
+        }
+      }
+
       @media screen and (max-width: 500px) {
         p {
           font-size: 16px;

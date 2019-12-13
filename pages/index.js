@@ -79,7 +79,7 @@ const Home = ({ featured_image, primary_hero, badges, yoast }) => {
 
       <div className='wrapper'>
         <div className='section'>
-          <HeadingMedium margin={'0 0 30px 0'}>Stream NewsON from your TV for free</HeadingMedium>
+          <HeadingMedium margin={'0 0 2vw 0'} centered>Stream NewsON from your TV for free</HeadingMedium>
           <Divider />
           <div className='badgeWrapper'>
             { tvBadgesList }
@@ -87,7 +87,7 @@ const Home = ({ featured_image, primary_hero, badges, yoast }) => {
         </div>
 
         <div className='section'>
-          <HeadingMedium margin={'0 0 30px 0'}>Stream NewsON from your mobile device for free</HeadingMedium>
+          <HeadingMedium margin={'0 0 2vw 0'} centered>Stream NewsON from your mobile device for free</HeadingMedium>
           <Divider />
           <div className='badgeWrapper'>
             { mobileBadgesList }
@@ -117,6 +117,12 @@ const Home = ({ featured_image, primary_hero, badges, yoast }) => {
         div.badgeWrapper {
           display: flex;
           flex-wrap: wrap;
+        }
+
+        @media screen and (min-width: 2000px) {
+          div.wrapper {
+            padding: 10vw 0 6vw 0;
+          }
         }
 
         @media screen and (max-width: 500px) {

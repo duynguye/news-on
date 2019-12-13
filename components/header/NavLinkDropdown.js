@@ -44,6 +44,18 @@ const NavLinkItem = ({ href, as, title }) => (
         color: #008FD6;
         text-decoration: none;
       }
+
+      @media screen and (min-width: 2000px) {
+        li {
+          height: 2.5vw;
+          width: calc(200px + 4vw);
+        }
+
+        a {
+          font-size: 0.9vw;
+          padding: 0 0.9vw;
+        }
+      }
     `}</style>
   </li>
 )
@@ -149,6 +161,16 @@ const NavLinkDropdown = ({ pathname, title, childItems }) => {
           font-size: 16px;
           font-weight: 500;
           text-decoration: none;
+        }
+
+        @media screen and (min-width: 2000px) {
+          li {
+            margin: 0 1vw;
+          }
+
+          a {
+            font-size: 0.9vw;
+          }
         }
       `}</style>
     </li>
