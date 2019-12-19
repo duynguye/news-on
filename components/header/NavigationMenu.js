@@ -117,7 +117,7 @@ const NavigationMenu = () => {
           margin-right: 20px;
         }
 
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 600px) {
           ul {
             display: none;
           }

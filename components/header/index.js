@@ -145,7 +145,7 @@ const Header = ({ }) => {
           }
         }
 
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 600px) {
           header {
             padding: 0 8.33333vw;
           }
