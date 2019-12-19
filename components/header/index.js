@@ -62,8 +62,26 @@ const DrawerMenu = () => {
     const { child_items } = item
 
     if (child_items && child_items.length > 0) {
+      const childMenuItems = child_items.map(child => {
+        let pathname = child.url
+
+        if (child.type_label !== 'Custom Link') {
+          const url = new URL(child.url)
+          pathname = url.pathname
+        }
+
+        return (
+          <MobileNavLink key={child.ID} pathname={pathname} title={child.title} indent={true} />
+        )
+      });
+
+      console.log(childMenuItems)
+
       return (
-        <MobileNavLink key={item.ID} pathname={pathname} title={item.title} />
+        <div key={item.ID}>
+          <MobileNavLink pathname={pathname} title={item.title} />
+          { childMenuItems }
+        </div>
       )
     } else {
       return (

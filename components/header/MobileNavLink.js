@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import ButtonBase from '@material-ui/core/ButtonBase'
 
-const MobileNavLink = ({ pathname, title }) => {
+const MobileNavLink = ({ pathname, title, indent = false }) => {
   let path = pathname.split('/')
   path = path.filter(name => name)
 
@@ -29,6 +29,7 @@ const MobileNavLink = ({ pathname, title }) => {
           list-style: none;
           margin: 0;
           text-align: left;
+          padding-left: ${indent ? 30 : 0}px;
         }
 
         span {
