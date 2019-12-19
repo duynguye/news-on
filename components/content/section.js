@@ -41,6 +41,12 @@ const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = f
         }
       }
 
+      @media screen and (max-width: 750px) {
+        div {
+          height: 425px;
+        }
+      }
+
       @media screen and (max-width: 500px) {
         div {
           height: 275px;
