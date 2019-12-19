@@ -138,7 +138,7 @@ const Header = ({ }) => {
           padding: 10px 15px;
         }
 
-        @media screen and (min-width: 2500px) {
+        @media screen and (min-width: 2000px) {
           header {
             height: 200px;
             padding: 0 128px;
