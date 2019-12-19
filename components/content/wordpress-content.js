@@ -123,7 +123,7 @@ const WordpressContent = ({ content }) => (
         }
       }
 
-      @media screen and (max-width: 500px) {
+      @media screen and (max-width: 650px) {
         div {
           margin: 0 auto 40px;
           padding: 0 8.33333vw;

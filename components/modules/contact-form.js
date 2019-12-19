@@ -293,7 +293,7 @@ const ContactForm = () => {
           }
         }
 
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 650px) {
           div {
             padding: 40px 8.33333vw;
           }
