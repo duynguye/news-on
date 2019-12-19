@@ -11,12 +11,31 @@ const WrappedBadge = ({ image = '', link = '' }) => (
 
     <style jsx>{`
       div {
+        height: 2.75vw;
+        display: inline-block;
         margin: 0 30px 30px 0;
-      }  
+        width: 10vw;
+      }
+
+      @media screen and (max-width: 1250px) {
+        div {
+          height: 3.25vw;
+          width: 12vw;
+        }
+      }
+
+      @media screen and (max-width: 1000px) {
+        div {
+          height: 7.75vw;
+          width: 25vw;
+        }
+      }
 
       @media screen and (max-width: 500px) {
         div {
-          margin: 0 20px 20px 0;
+          height: 7.75vw;
+          margin: 0 30px 30px 0;
+          width: 25vw;
         }  
       }
     `}</style>
@@ -126,14 +145,11 @@ const PrimaryHero = (props) => {
         }
 
         div.heroBadges {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          max-width: 400px;
+          
         }
 
         div.heroImage img {
-          max-height: 275px;
+          max-height: 20vw;
           width: auto;
         }
 
@@ -146,19 +162,19 @@ const PrimaryHero = (props) => {
           div.heroImage img {
             max-height: 20vw;
           }
-
-          div.heroBadges {
-            max-width: 14vw;
-          }
         }
 
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 1000px) {
           div.heroContent {
             width: 100%;
           }
 
           div.heroBadges {
             max-width: 100%;
+          }
+
+          div.heroImage img {
+            max-height: 60vw;
           }
         }
       `}</style>
