@@ -26,7 +26,8 @@ const Page = (props) => {
     about_title = '',
     about_content = '',
     about_partners_title = '',
-    about_partners_content = ''
+    about_partners_content = '',
+    latest_news_blurb = ''
   } = acf
 
   return (
@@ -50,7 +51,7 @@ const Page = (props) => {
         partners={partners}
       />
 
-      <LatestNews latest={props.latest} />
+      <LatestNews latest={props.latest} blurb={latest_news_blurb} />
       <Careers jobs={jobs} />
 
       <WordpressContent content={content} />

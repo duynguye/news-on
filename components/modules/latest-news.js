@@ -6,7 +6,7 @@ import NewsWrapper from 'components/news/news-wrapper'
 import he from 'he'
 import moment from 'moment'
 
-const LatestNews = ({ latest = [] }) => {
+const LatestNews = ({ latest = [], blurb = '' }) => {
   const latestNewsItems = latest.map(article => {
     const strippedExerpt = article.excerpt.rendered.replace(/<[^>]+>/g, '')
     const { link } = article
@@ -31,7 +31,7 @@ const LatestNews = ({ latest = [] }) => {
     <section>
       <div>
         <HeadingMedium centered margin={`0 0 3vw 0`}>Latest News</HeadingMedium>
-        <Paragraph margin={`0 0 4vw 0`}>Sem et tortor consequat id porta nibh venenatis. Facilisi morbi tempus iaculis urna id volutpat lacus. Suspendisse. Ultrices vitae auctor eu augue.</Paragraph>
+        <Paragraph margin={`0 0 4vw 0`}>{ blurb }</Paragraph>
       </div>
 
       <NewsWrapper>
