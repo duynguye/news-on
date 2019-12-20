@@ -6,7 +6,7 @@ import TextLink from 'components/buttons/text-link'
 
 const CareersLink = ({ title, path }) => (
   <li>
-    <TextLink to={path} external>{ title }</TextLink>
+    <TextLink to={path}>{ title }</TextLink>
 
     <style jsx>{`
       li:not(:last-of-type) {
@@ -17,13 +17,18 @@ const CareersLink = ({ title, path }) => (
 )
 
 const Careers = ({ jobs = [] }) => {
-  const jobPosts = jobs.map(job => (
-    <CareersLink 
-      key={job.id}
-      title={job.title.rendered}
-      path={job.acf.job_external_link}
-    />
-  ))
+  const jobPosts = jobs.map(job => {
+    console.log(job)
+    const url = new URL(job.link)
+
+    return (
+      <CareersLink 
+        key={job.id}
+        title={job.title.rendered}
+        path={url.pathname}
+      />
+    )
+  })
 
   return (
     <section id='careers'>
