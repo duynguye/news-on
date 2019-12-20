@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet'
 
 import HeadingLarge from 'components/text/heading-large'
 import WordpressContent from 'components/content/wordpress-content'
+import LatestNews from 'components/modules/latest-news'
 
 const Page = (props) => {
   const router = useRouter();
@@ -26,6 +27,8 @@ const Page = (props) => {
       </div>
 
       <WordpressContent content={content} />
+
+      <LatestNews latest={props.latest} />
 
       <style jsx>{`
         div {
@@ -63,7 +66,8 @@ Page.getInitialProps = async ({ query, reduxStore, res }) => {
   const data = await Promise.all([
     fetch(`${API_ENDPOINT}/wp/v2/posts?slug=${query.id}`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
+    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/wp/v2/posts?per_page=3`).then(response => response.json()),
   ])
 
   let social = []
@@ -82,7 +86,8 @@ Page.getInitialProps = async ({ query, reduxStore, res }) => {
   })
 
   return {
-    page: data[0][0]
+    page: data[0][0],
+    latest: data[3],
   }
 }
 
