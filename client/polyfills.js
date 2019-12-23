@@ -1,1 +1,1 @@
-import 'core-js/core'
+import '@babel/polyfill'
