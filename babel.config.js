@@ -8,7 +8,8 @@ module.exports = {
             ie: 11
           },
           corejs: 2,
-          useBuiltIns: "entry"
+          useBuiltIns: "entry",
+          debug: true
         }
       }
     ]
