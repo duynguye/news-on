@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import React from 'react'
 import { useSelector, shallowEqual } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

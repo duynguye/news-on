@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import React from 'react'
 import HeadingMedium from 'components/text/heading-medium'
 import Paragraph from 'components/text/paragraph'

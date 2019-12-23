@@ -30,6 +30,8 @@ module.exports = withPlugins([
       const entries = await originalEntry()
 
       if (entries['main.js']) {
+        console.log('Including polyfills.js')
+        
         entries['main.js'].unshift('./client/polyfills.js')
       }
 
