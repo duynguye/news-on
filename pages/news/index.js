@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
