@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 
 const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = '' }) => (

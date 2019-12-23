@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 
 const Paragraph = ({ children, light = false, margin = '0' }) => (

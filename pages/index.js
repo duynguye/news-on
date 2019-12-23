@@ -2,7 +2,6 @@
  * Front Page
  */
 
-import '@babel/polyfill'
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
 import { withRedux } from 'config/redux'

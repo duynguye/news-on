@@ -4,11 +4,9 @@
       "next/babel",
       {
         "preset-env": {
-          "targets": {
-            "ie": 10
-          },
+          "targets": "> 0.25%, not ie <= 8",
           "useBuiltIns": "entry",
-          "corejs": 2,
+          "corejs": 3,
           "debug": true
         }
       }

@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 
 import HeadingLarge from 'components/text/heading-large'

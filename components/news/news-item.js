@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 import Link from 'next/link'
 import HeadingSmall from 'components/text/heading-small'

@@ -1,4 +1,3 @@
-import '@babel/polyfill'
 import React from 'react'
 
 const HeadingLarge = ({ children, light = false, margin = '0', titleMarkup = '', centered = false }) => (
