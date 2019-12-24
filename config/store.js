@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialState = {
   menu: {},
+  footer: {},
   social: []
 }
 
@@ -18,6 +19,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         social: action.social
+      }
+
+    case 'SET_FOOTER':
+      return {
+        ...state,
+        footer: action.footer
       }
 
     default:

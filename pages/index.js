@@ -151,7 +151,8 @@ Home.getInitialProps = async ({ reduxStore }) => {
   const data = await Promise.all([
     fetch(`${API_ENDPOINT}/wp/v2/frontpage`).then(response => response.json()),
     fetch(`${API_ENDPOINT}/menus/v1/menus/primary`).then(response => response.json()),
-    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json())
+    fetch(`${API_ENDPOINT}/acf/v3/options/acf-options`).then(response => response.json()),
+    fetch(`${API_ENDPOINT}/menus/v1/menus/footer`).then(response => response.json())
   ])
 
   let image = {}
