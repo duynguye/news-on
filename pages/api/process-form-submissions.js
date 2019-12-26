@@ -31,7 +31,7 @@ export default (req, res) => {
       'Content-Type': 'application/json',
       'Authorization': 'Basic OURQQy1ITVlNLUQ4VkktMURCRzp4'
     },
-    body: JSON.stringify({
+    body: {
       "qh4icy": message.fullname,
       "8igzw": message.title,
       "kzex8": message.company,
@@ -39,7 +39,7 @@ export default (req, res) => {
       "vfxqe": message.phone,
       "9jv0r1": message.message,
       "rcft7": interests
-    })
+    }
   }).then(response => {
     if (response.ok) {
       res.status(200).send('Success');
