@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch'
 const API_ENDPOINT = 'https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries';
 
-export default (req, res) => {
+export default async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
 
   if (req.method === 'OPTIONS') {
