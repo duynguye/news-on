@@ -25,15 +25,7 @@ export default (req, res) => {
     interests.push('Other');
   }
 
-  res.status(200).send(JSON.stringify({
-    "qh4icy": message.fullname,
-    "8igzw": message.title,
-    "kzex8": message.company,
-    "29yf4d": message.email,
-    "vfxqe": message.phone,
-    "9jv0r1": message.message,
-    "rcft7": interests
-  }))
+  res.status(200).send(req.body)
   
   // fetch('https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries', {
   //   method: 'POST',
