@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 const API_ENDPOINT = 'https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries';
 
 export default (req, res) => {
-  let message = req.body;
+  let message = JSON.parse(req.body);
   let interests = [];
   
   if (message.addstation) {
