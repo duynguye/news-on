@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/pro-light-svg-icons'
+import ReCAPTCHA from 'react-google-recaptcha'
 import fetch from 'isomorphic-unfetch'
 import * as Yup from 'yup'
 
@@ -196,6 +197,8 @@ const ContactSchema = Yup.object().shape({
 })
 
 const ContactForm = () => {
+  const recaptchaRef = React.createRef()
+
   return (
     <div>
       <HeadingMedium margin={`0 0 40px 0`} centered>Tell us about yourself, select what you're interested in.</HeadingMedium>
@@ -217,6 +220,9 @@ const ContactForm = () => {
         validationSchema={ContactSchema}
 
         onSubmit={(values, { resetForm, setSubmitting }) => {
+          const result = recaptchaRef.current.execute();
+          console.log(result);
+          
           fetch('/api/process-form-submissions', {
             method: 'POST',
             body: JSON.stringify(values)
@@ -245,6 +251,12 @@ const ContactForm = () => {
               <Field label='Message *' type='text' name='message' component={MessageField} />
               <button type='submit' disabled={isSubmitting}>Submit</button>
             </div>
+
+            <ReCAPTCHA 
+              ref={recaptchaRef}
+              size="invisible"
+              sitekey="6LdbOsoUAAAAAB2Z4assA0n_Qb3_LqkpIcrpAfh0"
+            />
           </Form>
         )}
       </Formik>
