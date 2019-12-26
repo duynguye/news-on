@@ -43,7 +43,7 @@ export default async (req, res) => {
   });
   
   if (results.ok) {
-    res.status(200).send(results);
+    res.status(200).send('Success');
   } else {
     res.status(500).send(results.statusText);
   }

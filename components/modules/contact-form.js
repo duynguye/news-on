@@ -217,7 +217,7 @@ const ContactForm = () => {
         validationSchema={ContactSchema}
 
         onSubmit={(values, { resetForm, setSubmitting }) => {
-          fetch('https://us-east1-newson-258720.cloudfunctions.net/process-form-submissions', {
+          fetch('/api/process-form-submissions', {
             method: 'POST',
             body: values
           }).then(response => {
