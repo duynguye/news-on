@@ -25,7 +25,7 @@ export default (req, res) => {
     interests.push('Other');
   }
   
-  fetch(API_ENDPOINT, {
+  fetch('https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries', {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default (req, res) => {
     if (response.ok) {
       res.status(200).send('Success');
     } else {
-      res.status(500).send(response.statusText);
+      res.status(response.status).send(response.statusText);
     }
   });
 }
