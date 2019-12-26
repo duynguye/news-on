@@ -123,8 +123,6 @@ const PhoneField = ({ label, field, form, ...props }) => {
 }
 
 const CheckboxField = ({ label, field, form, ...props }) => {
-  console.log(field)
-  console.log(form)
   return (
     <div className='wrapper'>
       <input type='checkbox' {...field} {...props} />
@@ -222,13 +220,10 @@ const ContactForm = () => {
           fetch('https://us-east1-newson-258720.cloudfunctions.net/process-form-submissions', {
             method: 'POST',
             body: values
-          })
-
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
+          }).then(response => {
             resetForm(true)
             setSubmitting(false)
-          }, 500)
+          })
         }}
       >
         {({ isSubmitting }) => (
