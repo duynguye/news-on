@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch'
 const API_ENDPOINT = 'https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries';
 
-export default async (req, res) => {
+export default (req, res) => {
   let message = req.body;
   let interests = [];
   
@@ -25,7 +25,7 @@ export default async (req, res) => {
     interests.push('Other');
   }
   
-  let results = await fetch(API_ENDPOINT, {
+  fetch(API_ENDPOINT, {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
@@ -40,11 +40,11 @@ export default async (req, res) => {
       "9jv0r1": message.message,
       "rcft7": interests
     })
+  }).then(response => {
+    if (response.ok) {
+      res.status(200).send('Success');
+    } else {
+      res.status(500).send(response.statusText);
+    }
   });
-  
-  if (results.ok) {
-    res.status(200).send('Success');
-  } else {
-    res.status(500).send(results.statusText);
-  }
 }
