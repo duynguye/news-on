@@ -59,7 +59,7 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
 
   let featured_media = {}
 
-  if (data[0][0].featured_media) {
+  if (data[0] && data[0][0] && data[0][0].featured_media) {
     featured_media = await fetch(`${API_ENDPOINT}/wp/v2/media/${data[0][0].featured_media}`)
       .then(response => response.json())
   }
