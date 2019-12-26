@@ -25,7 +25,7 @@ export default (req, res) => {
     interests.push('Other');
   }
 
-  res.status(200).send(req.body)
+  res.status(200).send(message)
   
   // fetch('https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries', {
   //   method: 'POST',
