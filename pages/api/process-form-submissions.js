@@ -11,8 +11,6 @@ export default (req, res) => {
     res.status(204).send('');
   } else {
     let message = req.body;
-    let buffer = Buffer.from(process.env.formidable + ':x');
-    let auth = buffer.toString('base64');
     let interests = [];
     
     if (message.addstation) {
@@ -35,7 +33,7 @@ export default (req, res) => {
       interests.push('Other');
     }
     
-    let results = await fetch('https://sbgi118262site.wpengine.com/wp-json/frm/v2/forms/1/entries', {
+    let results = await fetch(API_ENDPOINT, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
