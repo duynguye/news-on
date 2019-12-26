@@ -219,7 +219,7 @@ const ContactForm = () => {
         onSubmit={(values, { resetForm, setSubmitting }) => {
           fetch('/api/process-form-submissions', {
             method: 'POST',
-            body: values
+            body: JSON.stringify(values)
           }).then(response => {
             resetForm(true)
             setSubmitting(false)
