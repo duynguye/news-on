@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/pro-light-svg-icons'
+import fetch from 'isomorphic-unfetch'
 import * as Yup from 'yup'
 
 import HeadingMedium from 'components/text/heading-medium'
@@ -218,6 +219,11 @@ const ContactForm = () => {
         validationSchema={ContactSchema}
 
         onSubmit={(values, { resetForm, setSubmitting }) => {
+          fetch('https://us-east1-newson-258720.cloudfunctions.net/process-form-submissions', {
+            method: 'POST',
+            body: values
+          })
+
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2))
             resetForm(true)
