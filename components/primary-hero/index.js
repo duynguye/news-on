@@ -131,7 +131,7 @@ const PrimaryHero = (props) => {
           justify-content: center;
           padding-left: 8.33333vw;
           padding-right: 8.33333vw;
-          width: 50vw;
+          width: 50%;
           z-index: 10;
         }
 
@@ -140,7 +140,7 @@ const PrimaryHero = (props) => {
           display: flex;
           height: 100%;
           justify-content: center;
-          width: 50vw;
+          width: 50%;
           z-index: 10;
         }
 

@@ -12,6 +12,7 @@ const Paragraph = ({ children, light = false, margin = '0' }) => (
         font-weight: 400;
         line-height: 32px;
         margin: ${margin};
+        width: 100%;
       }
 
       .light {

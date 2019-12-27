@@ -17,6 +17,7 @@ const HeadingMedium = ({ children, light = false, margin = '0', titleMarkup = ''
         letter-spacing: 0.5px;
         line-height: 28px;
         margin: ${margin};
+        width: 100%;
       }
 
       .light {

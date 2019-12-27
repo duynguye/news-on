@@ -54,9 +54,11 @@ const Hero = ({ title, content = '', featured_media = {} }) => (
       }
 
       div.left {
-        flex: 0 1 54.16667vw;
+        flex-grow: 0;
+        flex-shrink: 1;
         margin-bottom: ${ content ? 0 : -30 }px;
         padding: 85px 8.33333vw;
+        width: 54.16667vw;
       }
 
       div.right {

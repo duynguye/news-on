@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/pro-light-svg-icons'
+import { faTimes, faSpinner } from '@fortawesome/pro-light-svg-icons'
 import ReCAPTCHA from 'react-google-recaptcha'
 import fetch from 'isomorphic-unfetch'
 import * as Yup from 'yup'
@@ -197,6 +197,7 @@ const ContactSchema = Yup.object().shape({
 })
 
 const ContactForm = () => {
+  const [submitText, setSubmitText] = useState('Submit')
   const recaptchaRef = React.createRef()
 
   return (
@@ -220,16 +221,21 @@ const ContactForm = () => {
         validationSchema={ContactSchema}
 
         onSubmit={(values, { resetForm, setSubmitting }) => {
-          const result = recaptchaRef.current.execute();
-          console.log(result);
-          
-          fetch('/api/process-form-submissions', {
-            method: 'POST',
-            body: JSON.stringify(values)
-          }).then(response => {
-            resetForm(true)
+          setSubmitText(<FontAwesomeIcon icon={faSpinner} spin/>)
+
+          setTimeout(() => {
+            setSubmitText('Submit')
             setSubmitting(false)
-          })
+          }, 4000)
+          // const result = recaptchaRef.current.execute();
+          
+          // fetch('/api/process-form-submissions', {
+          //   method: 'POST',
+          //   body: JSON.stringify(values)
+          // }).then(response => {
+          //   resetForm(true)
+          //   setSubmitting(false)
+          // })
         }}
       >
         {({ isSubmitting }) => (
@@ -249,7 +255,7 @@ const ContactForm = () => {
               <Field label='E-mail *' type='text' name='email' component={TextField} />
               <Field label='Phone Number *' type='text' name='phone' component={PhoneField} />
               <Field label='Message *' type='text' name='message' component={MessageField} />
-              <button type='submit' disabled={isSubmitting}>Submit</button>
+              <button type='submit' disabled={isSubmitting}>{ submitText }</button>
             </div>
 
             <ReCAPTCHA 
@@ -289,11 +295,17 @@ const ContactForm = () => {
           border-radius: 3px;
           border: none;
           color: #ffffff;
+          cursor: pointer;
           font-family: 'Brandon Text', sans-serif;
           font-size: 18px;
           font-weight: 500;
           line-height: 23px;
           padding: 16px 60px;
+          user-select: none;
+        }
+
+        button::-moz-focus-inner {
+          border: 0;
         }
 
         @media screen and (max-width: 1100px) {

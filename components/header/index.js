@@ -144,6 +144,7 @@ const Header = ({ }) => {
           height: 100px;
           padding: 0 64px;
           position: relative;
+          width: 100%;
         }
 
         button {

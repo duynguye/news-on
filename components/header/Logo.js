@@ -9,7 +9,11 @@ const Logo = () => (
       </a>
     </Link>
 
-    <style jsx>{`      
+    <style jsx>{`
+      a {
+        margin-right: auto;
+      }
+      
       img {
         height: 52px;
         width: auto;

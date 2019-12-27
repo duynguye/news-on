@@ -15,7 +15,7 @@ const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = f
         height: 600px;
         order: ${order};
         position: relative;
-        width: 50vw;
+        width: 50%;
       }
 
       img.background {
@@ -82,7 +82,7 @@ const TextSection = ({ order = 2, content, centered, title, titleSize, to }) => 
         justify-content: center;
         order: ${order};
         padding: 4.16666vw;
-        width: 50vw;
+        width: 50%;
       }
 
       .centered {
@@ -136,6 +136,7 @@ const Section = ({
           display: flex;
           flex-direction: row;
           flex-flow: row wrap;
+          width: 100%;
         }
       `}</style>
     </section>
