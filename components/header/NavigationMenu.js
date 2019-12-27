@@ -25,7 +25,7 @@ const useSocial = () => {
 
 const SocialIcon = ({ icon, url }) => (
   <a href={url} target='_blank'>
-    <FontAwesomeIcon icon={icon} />
+    <FontAwesomeIcon icon={icon} height='18' width='16' />
 
     <style jsx>{`
       a {

@@ -33,9 +33,9 @@ const WrappedBadge = ({ image = '', link = '' }) => (
 
       @media screen and (max-width: 500px) {
         div {
-          height: 7.75vw;
+          height: 10vw;
           margin: 0 30px 30px 0;
-          width: 25vw;
+          width: 30vw;
         }  
       }
     `}</style>
