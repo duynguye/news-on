@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faSpinner } from '@fortawesome/pro-light-svg-icons'
 import ReCAPTCHA from 'react-google-recaptcha'
+import css from 'styled-jsx/css'
 import fetch from 'isomorphic-unfetch'
+import { motion, useAnimation } from 'framer-motion'
 import * as Yup from 'yup'
 
 import HeadingMedium from 'components/text/heading-medium'
@@ -196,9 +198,78 @@ const ContactSchema = Yup.object().shape({
     .required('A message is required')
 })
 
+const Feedback = forwardRef((props, ref) => {
+  const controls = useAnimation()
+  const { className, styles } = css.resolve`
+    div {
+      background: #4BB543;
+      border-radius: 5px;
+      bottom: 30px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+                0 2px 4px rgba(0,0,0,0.07), 
+                0 4px 8px rgba(0,0,0,0.07), 
+                0 8px 16px rgba(0,0,0,0.07),
+                0 16px 32px rgba(0,0,0,0.07), 
+                0 32px 64px rgba(0,0,0,0.07);
+      color: white;
+      font-family: 'Brandon Text', sans-serif;
+      margin: 0 auto;
+      opacity: 0;
+      padding: 30px;
+      position: fixed;
+      pointer-events: none;
+      right: 30px;
+      width: 25vw;
+      z-index: 100000;
+      user-select: none;
+    }
+
+    @media screen and (max-width: 1600px) {
+      div {
+        width: 40vw;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      div {
+        left: 0;
+        right: 0;
+        margin: 0 8.33333vw;
+        width: calc(100% - ${8.33333 * 2}vw);
+      }
+    }
+  `
+
+  useImperativeHandle(ref, () => ({
+    showDialog() {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.5
+        }
+      })
+    
+      setTimeout(() => {
+        controls.start({
+          opacity: 0
+        })
+      }, 4000)
+    }
+  }))
+
+  return (
+    <motion.div initial={{ y: 50, opacity: 0 }} animate={controls} className={className}>
+      { 'Your information has been successfully submitted. We will be in touch with you as soon as possible.' }
+      { styles }
+    </motion.div>
+  )
+})
+
 const ContactForm = () => {
   const [submitText, setSubmitText] = useState('Submit')
-  const recaptchaRef = React.createRef()
+  const recaptchaRef = useRef()
+  const feedbackRef = useRef()
 
   return (
     <div>
@@ -222,20 +293,17 @@ const ContactForm = () => {
 
         onSubmit={(values, { resetForm, setSubmitting }) => {
           setSubmitText(<FontAwesomeIcon icon={faSpinner} spin/>)
-
-          setTimeout(() => {
+          const result = recaptchaRef.current.execute();
+          
+          fetch('/api/process-form-submissions', {
+            method: 'POST',
+            body: JSON.stringify(values)
+          }).then(response => {
+            feedbackRef.current.showDialog()
             setSubmitText('Submit')
             setSubmitting(false)
-          }, 4000)
-          // const result = recaptchaRef.current.execute();
-          
-          // fetch('/api/process-form-submissions', {
-          //   method: 'POST',
-          //   body: JSON.stringify(values)
-          // }).then(response => {
-          //   resetForm(true)
-          //   setSubmitting(false)
-          // })
+            resetForm(true)
+          })
         }}
       >
         {({ isSubmitting }) => (
@@ -266,6 +334,8 @@ const ContactForm = () => {
           </Form>
         )}
       </Formik>
+
+      <Feedback ref={feedbackRef} />
       
       <style jsx>{`
         div {
@@ -332,7 +402,7 @@ const ContactForm = () => {
           div.field-groups {
             width: 100%;
           }
-          
+
           div.checkboxes {
             width: 100%;
           }
