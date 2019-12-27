@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import HeadingSmall from 'components/text/heading-small'
 
-const NewsItem = ({ title, date, excerpt, image, link }) => (
-  <li>
+const NewsItem = ({ title, date, excerpt, image, link, className }) => (
+  <li className={className}>
     <Link href={`/news${link}`}>
       <a>
         <img src={image.src} alt={image.alt} />

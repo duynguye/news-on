@@ -72,6 +72,22 @@ const Careers = ({ jobs = [] }) => {
             padding: 4.5vw 0;
           }
         }
+
+        @media screen and (max-width: 650px) {
+          section {
+            flex-direction: column;
+          }
+
+          div.title {
+            margin-bottom: 30px;
+            width: 100%;
+          }
+
+          div.content {
+            padding: 0 8.33333vw;
+            width: 100%;
+          }
+        }
       `}</style>
     </section>
   )

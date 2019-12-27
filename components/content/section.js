@@ -5,10 +5,17 @@ import HeadingSmall from 'components/text/heading-small'
 import Paragraph from 'components/text/paragraph'
 import Link from 'components/buttons/link'
 
-const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = false }) => (
+const ImageSection = ({ 
+  background, 
+  backgroundAlt, 
+  foreground, 
+  foregroundAlt, 
+  order = 1, 
+  foregroundSpecial = false 
+}) => (
   <div>
-    <img className={'background'} src={background} />
-    <img className={'foreground' + (foregroundSpecial ? ' special' : '')} src={foreground} />
+    <img className={'background'} src={background} alt={backgroundAlt} />
+    <img className={'foreground' + (foregroundSpecial ? ' special' : '')} src={foreground} alt={foregroundAlt} />
 
     <style jsx>{`
       div {
@@ -58,66 +65,73 @@ const ImageSection = ({ background, foreground, order = 1, foregroundSpecial = f
   </div>
 )
 
-const TextSection = ({ order = 2, content, centered, title, titleSize, to }) => (
-  <div className={ centered && 'centered' }>
-    {
-      titleSize === 'small'
-      ? <HeadingSmall margin={'0 0 24px 0'}>{ title }</HeadingSmall>
-      : <HeadingMedium margin={'0 0 24px 0'}>{ title }</HeadingMedium>
-    }
-    
-    { content && <Paragraph margin={'0 0 24px 0'}>{ content }</Paragraph> }
-    
-    {
-      to
-      ? <Link to={to}>Learn More</Link>
-      : ''
-    }
-
-    <style jsx>{`
-      div {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        order: ${order};
-        padding: 4.16666vw;
-        width: 50%;
+const TextSection = ({ order = 2, content, centered, title, titleSize, to }) => {
+  
+  return (
+    <div className={ centered && 'centered' }>
+      {
+        titleSize === 'small'
+        ? <HeadingSmall margin={'0 0 24px 0'}>{ title }</HeadingSmall>
+        : <HeadingMedium margin={'0 0 24px 0'}>{ title }</HeadingMedium>
+      }
+      
+      { content && <Paragraph margin={'0 0 24px 0'}>{ content }</Paragraph> }
+      
+      {
+        to
+        ? <Link to={`/[slug]`} as={`/about`}>{ to.title }</Link>
+        : ''
       }
 
-      .centered {
-        align-items: center;
-        text-align: center;
-      }
-
-      @media screen and (max-width: 500px) {
+      <style jsx>{`
         div {
-          margin-bottom: ${titleSize === 'small' ? -24 : 0 }px;
-          order: 1;
-          padding: ${8.33333 * 2}vw 8.33333vw;
-          width: 100%;
+          align-items: flex-start;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          order: ${order};
+          padding: 4.16666vw;
+          width: 50%;
         }
-      }
-    `}</style>
-  </div>
-)
+
+        .centered {
+          align-items: center;
+          text-align: center;
+        }
+
+        @media screen and (max-width: 500px) {
+          div {
+            margin-bottom: ${titleSize === 'small' ? -24 : 0 }px;
+            order: 1;
+            padding: ${8.33333 * 2}vw 8.33333vw;
+            width: 100%;
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
 
 const Section = ({ 
-  background = '', 
+  background = '',
+  backgroundAlt = '',
   foreground = '', 
+  foregroundAlt = '',
   foregroundSpecial = false, 
   reverse = false,
   centered = false,
   title = '',
   titleSize = '',
   content = '',
-  to = ''
+  to = {}
 }) => {
   return (
     <section>
       <ImageSection 
         background={background}
+        backgroundAlt={backgroundAlt}
         foreground={foreground}
+        foregroundAlt={foregroundAlt}
         foregroundSpecial={foregroundSpecial}
         order={reverse ? 2 : 1}
       />

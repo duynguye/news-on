@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const FooterLink = ({ to, children }) => (
   <li>
-    <Link href={to}>
+    <Link href={`/[slug]`} as={to}>
       <a>{ children }</a>
     </Link>
 

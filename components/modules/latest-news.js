@@ -19,6 +19,7 @@ const LatestNews = ({ latest = [], blurb = '' }) => {
         date={moment(article.date).format('MMMM DD, YYYY')}
         excerpt={he.decode(strippedExerpt)}
         link={url.pathname}
+        className={'latest-news-item'}
         image={{
           src: article.fimg_url,
           alt: article.fimg_alt
@@ -52,6 +53,12 @@ const LatestNews = ({ latest = [], blurb = '' }) => {
         @media screen and (min-width: 2000px) {
           section {
             padding: 4vw 0 3vw;
+          }
+        }
+
+        @media screen and (max-width: 1101px) {
+          :global(.latest-news-item:nth-child(3)) {
+            display: none;
           }
         }
 

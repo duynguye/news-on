@@ -22,6 +22,8 @@ const Page = (props) => {
   const { yoast_meta = {} } = props.page || {}
   const pageTitle = yoast_meta.yoast_wpseo_title || ''
 
+  console.log(props.options);
+
   const {
     about_title = '',
     about_content = '',
@@ -107,7 +109,8 @@ Page.getInitialProps = async ({ query, reduxStore }) => {
     featured_media,
     acf: acfData.acf,
     partners: data[3],
-    jobs: data[4]
+    jobs: data[4],
+    options: data[5]
   }
 }
 

@@ -308,6 +308,12 @@ const ContactForm = () => {
           border: 0;
         }
 
+        @media screen and (max-width: 1600px) {
+          div.field-groups {
+            width: 50vw;
+          }
+        }
+
         @media screen and (max-width: 1100px) {
           div {
             padding: 40px ${8.33333 * 3}vw;
@@ -324,6 +330,10 @@ const ContactForm = () => {
           }
 
           div.field-groups {
+            width: 100%;
+          }
+          
+          div.checkboxes {
             width: 100%;
           }
         }

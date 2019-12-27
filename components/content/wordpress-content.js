@@ -116,6 +116,13 @@ const WordpressContent = ({ content }) => (
         }
       }
 
+      @media screen and (max-width: 1600px) {
+        div {
+          padding: 0 4.16666vw;
+          width: 60vw;
+        }
+      }
+
       @media screen and (max-width: 1100px) {
         div {
           padding: 0 ${8.33333 * 2}vw;

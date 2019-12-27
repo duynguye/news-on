@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 
-const PageLink = ({ to = '', target = '', margin = '0', children }) => (
+const PageLink = ({ to = '', target = '', margin = '0', as='', children }) => (
   <>
-    <Link href={to}>
+    <Link href={to} as={as}>
       <a target={target}>{ children }</a>
     </Link>
 

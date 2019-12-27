@@ -34,11 +34,21 @@ const WrappedBadge = ({ image = '', link = '' }) => (
   </div>
 )
 
-const Home = ({ featured_image, primary_hero, badges, yoast }) => {
+const Home = ({ featured_image, primary_hero, badges, yoast, page_acf }) => {
   const { primary_hero_image, primary_hero_title, primary_hero_content } = primary_hero
   const mobileBadges = badges.filter(badge => badge.platform === 'mobile')
   const tvBadges = badges.filter(badge => badge.platform === 'tv')
   const pageTitle = yoast.yoast_wpseo_title || ''
+  const { acf = {} } = page_acf
+
+  console.log(acf)
+
+  const {
+    tv_app_title = '',
+    mobile_app_title = '',
+    home_section_1 = {},
+    home_section_2 = {}
+  } = acf
 
   const mobileBadgesList = mobileBadges.map(badge => (
     <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
@@ -61,26 +71,32 @@ const Home = ({ featured_image, primary_hero, badges, yoast }) => {
       />
 
       <Section 
-        background={'https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/BG-green.jpg'}
-        foreground={'https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/roku-1.png'}
-        title={'About NewsON'}
-        content={"Now with over 285 local station partners and over 175 markets in the country, NewsON delivers a new way to access and experience local news. Let's take local news to the next level. Let's do it together."}
-        to={'/about'}
+        background={home_section_1.background_image.url}
+        backgroundAlt={home_section_1.background_image.alt}
+        foreground={home_section_1.image.url}
+        foregroundAlt={home_section_1.image.alt}
+        title={home_section_1.title}
+        content={home_section_1.content}
+        centered={home_section_1.centered}
+        to={home_section_1.link}
       />
       
       <Section 
-        background={'https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/BG-blue.jpg'}
-        foreground={'https://sbgi118262site.wpengine.com/wp-content/uploads/2019/11/iphone-home.png'}
+        background={home_section_2.background_image.url}
+        backgroundAlt={home_section_2.background_image.alt}
+        foreground={home_section_2.image.url}
+        foregroundAlt={home_section_2.image.alt}
         foregroundSpecial={true}
         reverse
-        centered
-        title={'Watch live, local TV newscasts for free. No cable subscription or login required.'}
+        title={home_section_2.title}
+        content={home_section_2.content}
+        centered={home_section_2.centered}
         titleSize={'small'}
       />
 
       <div className='wrapper'>
         <div className='section'>
-          <HeadingMedium margin={'0 0 2vw 0'} centered>Stream NewsON from your TV for free</HeadingMedium>
+          <HeadingMedium margin={'0 0 2vw 0'} centered>{ tv_app_title }</HeadingMedium>
           <Divider />
           <div className='badgeWrapper'>
             { tvBadgesList }
@@ -88,7 +104,7 @@ const Home = ({ featured_image, primary_hero, badges, yoast }) => {
         </div>
 
         <div className='section'>
-          <HeadingMedium margin={'0 0 2vw 0'} centered>Stream NewsON from your mobile device for free</HeadingMedium>
+          <HeadingMedium margin={'0 0 2vw 0'} centered>{ mobile_app_title }</HeadingMedium>
           <Divider />
           <div className='badgeWrapper'>
             { mobileBadgesList }
@@ -198,7 +214,8 @@ Home.getInitialProps = async ({ reduxStore }) => {
     featured_image: image,
     primary_hero: page_acf && page_acf.acf,
     badges,
-    yoast: page_yoast.yoast_meta
+    yoast: page_yoast.yoast_meta,
+    page_acf
   }
 }
 
