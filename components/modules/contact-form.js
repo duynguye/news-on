@@ -292,7 +292,7 @@ const ContactForm = () => {
         validationSchema={ContactSchema}
 
         onSubmit={(values, { resetForm, setSubmitting }) => {
-          setSubmitText(<FontAwesomeIcon icon={faSpinner} spin/>)
+          setSubmitText(<FontAwesomeIcon icon={faSpinner} spin />)
           const result = recaptchaRef.current.execute();
           
           fetch('/api/process-form-submissions', {
