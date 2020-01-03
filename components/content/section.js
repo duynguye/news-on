@@ -48,9 +48,27 @@ const ImageSection = ({
         }
       }
 
-      @media screen and (max-width: 750px) {
+      @media screen and (max-width: 1500px) {
         div {
-          height: 425px;
+          height: auto;
+          min-height: 450px;
+          max-height: 500px;
+        }
+      }
+
+      @media screen and (max-width: 1100px) {
+        div {
+          height: auto;
+          min-height: 350px;
+          max-height: 425px;
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        div {
+          height: auto;
+          min-height: 300px;
+          max-height: 425px;
         }
       }
 

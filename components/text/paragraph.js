@@ -26,6 +26,13 @@ const Paragraph = ({ children, light = false, margin = '0' }) => (
         }
       }
 
+      @media screen and (max-width: 1000px) {
+        p {
+          font-size: 16px;
+          line-height: 26px;
+        }
+      }
+
       @media screen and (max-width: 500px) {
         p {
           font-size: 16px;
