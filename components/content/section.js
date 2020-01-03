@@ -75,6 +75,7 @@ const ImageSection = ({
       @media screen and (max-width: 500px) {
         div {
           height: ${foregroundSpecial ? 275: 225}px;
+          min-height: initial;
           order: 2;
           width: 100%;
         }
