@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Badge = ({ src = '', link = '' }) => (
+const Badge = ({ src = '', link = '', alt = '' }) => (
   <a href={link} target='_blank' rel='noreferrer noopener'>
-    <img src={src} alt='' />
+    <img src={src} alt={alt} />
 
     <style jsx>{`
       img {

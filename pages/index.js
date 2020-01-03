@@ -15,9 +15,9 @@ import HeadingMedium from 'components/text/heading-medium'
 import Divider from 'components/content/divider'
 import Badge from 'components/buttons/badge'
 
-const WrappedBadge = ({ image = '', link = '' }) => (
+const WrappedBadge = ({ image = '', link = '', alt = '' }) => (
   <div>
-    <Badge src={image} link={link} />
+    <Badge src={image} link={link} alt={alt} />
 
     <style jsx>{`
       div {
@@ -41,7 +41,7 @@ const Home = ({ featured_image, primary_hero, badges, yoast, page_acf }) => {
   const pageTitle = yoast.yoast_wpseo_title || ''
   const { acf = {} } = page_acf
 
-  console.log(acf)
+  console.log(badges)
 
   const {
     tv_app_title = '',
@@ -51,11 +51,11 @@ const Home = ({ featured_image, primary_hero, badges, yoast, page_acf }) => {
   } = acf
 
   const mobileBadgesList = mobileBadges.map(badge => (
-    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
+    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} alt={badge.badge.alt} />
   ))
 
   const tvBadgesList = tvBadges.map(badge => (
-    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
+    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} alt={badge.badge.alt} />
   ))
 
   return (

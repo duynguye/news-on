@@ -5,9 +5,9 @@ import HeadingLarge from 'components/text/heading-large'
 import Paragraph from 'components/text/paragraph'
 import Badge from 'components/buttons/badge'
 
-const WrappedBadge = ({ image = '', link = '' }) => (
+const WrappedBadge = ({ image = '', link = '', alt = '' }) => (
   <div>
-    <Badge src={image} link={link} />
+    <Badge src={image} link={link} alt={alt} />
 
     <style jsx>{`
       div {
@@ -76,7 +76,7 @@ const PrimaryHero = (props) => {
   }
 
   const badgeList = badges.map(badge => (
-    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link} />
+    <WrappedBadge key={badge.badge.id} image={badge.badge.url} link={badge.link}  alt={badge.badge.alt} />
   ))
 
   return (
