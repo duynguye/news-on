@@ -173,8 +173,14 @@ const PrimaryHero = (props) => {
             max-width: 100%;
           }
 
+          div.heroImage {
+            margin: 0 auto;
+            width: 90%;
+          }
+
           div.heroImage img {
             max-height: 60vw;
+            width: 100%;
           }
         }
       `}</style>
