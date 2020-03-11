@@ -2,6 +2,11 @@ import React from 'react'
 import App from 'next/app'
 import Router from 'next/router'
 import withGA from 'next-ga'
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+  gtmId: 'GTM-573GLLR'
+}
 
 class CustomApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -15,6 +20,10 @@ class CustomApp extends App {
   //
   //   return { ...appProps }
   // }
+
+  componentDidMount() {
+    TagManager.initialize(tagManagerArgs)
+  }
 
   render() {
     const { Component, pageProps } = this.props
