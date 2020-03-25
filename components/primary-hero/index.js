@@ -82,7 +82,7 @@ const PrimaryHero = (props) => {
   return (
     <motion.div
       animate={controls}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       style={{ 
         alignItems: 'center',
         display: 'flex',

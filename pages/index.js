@@ -21,7 +21,7 @@ const WrappedBadge = ({ image = '', link = '', alt = '' }) => (
 
     <style jsx>{`
       div {
-        flex: 1;
+        flex: 1 1 auto;
         margin: 0 15px;
       }  
 
